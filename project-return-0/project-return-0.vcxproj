@@ -197,7 +197,14 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Battle.cpp" />
+    <ClCompile Include="Difficult.cpp" />
+    <ClCompile Include="Ending.cpp" />
+    <ClCompile Include="GameAction.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MovieStory.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\engine\texture\box-shadow\128.png" />
@@ -261,6 +268,16 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="App\example\test.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Battle.h" />
+    <ClInclude Include="Difficult.h" />
+    <ClInclude Include="Ending.h" />
+    <ClInclude Include="GameAction.h" />
+    <ClInclude Include="MovieStory.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
