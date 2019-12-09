@@ -32,10 +32,10 @@ void MovieStory::update(void) {
 	if (storycount == csv.get<int>(0, 1)&& on3 == true && KeyEnter.down()) {//RPGバトルへ移行
 		SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
 	}
-	if (downframecount == 5 && on3 != true && KeyEnter.down()) {
+	if (downframecount == 5 && on3 != true && KeyEnter.down()) {		//文字描画中にエンターキーを押すとすべて描画
 		AllSentencePrint();
 	}
-	else if (storycount != csv.get<int>(0, 1) && downframecount == 5 && on3 == true && KeyEnter.down()) {
+	else if (storycount != csv.get<int>(0, 1) && downframecount == 5 && on3 == true && KeyEnter.down()) {			//すべて描画した後、会話に続きがあるならば初期化
 		SetOnFlagFalse();
 		LoadCsv();
 		ClearPrint();
@@ -45,13 +45,13 @@ void MovieStory::update(void) {
 
 void MovieStory::draw(void) {
 	DownFramePrint();
-	if (downframecount == 5) {
+	if (downframecount == 5) {			//白枠が出てきたら1行目を描画
 		printSentence1();
 	}
-	if (on1 == true) {
+	if (on1 == true) {					//1行目がすべて描画できたら2行目を描画
 		printSentence2();
 	}
-	if (on2== true) {
+	if (on2== true) {					//2行目がすべて描画出来たら3行目を描画
 		printSentence3();
 	}
 }
@@ -96,7 +96,7 @@ void MovieStory::printSentence3(void) {
 	}
 }
 
-void MovieStory::SetOnFlagFalse(void) {
+void MovieStory::SetOnFlagFalse(void) {			//フラグとカウントの初期化
 	on1 = false;
 	on2 = false;
 	on3 = false;
@@ -105,7 +105,7 @@ void MovieStory::SetOnFlagFalse(void) {
 	count3 = 0;
 }
 
-void MovieStory::AllSentencePrint(void) {
+void MovieStory::AllSentencePrint(void) {			//フラグをTRUEに、カウントをMAXにする処理
 	on1 = true;
 	on2 = true;
 	on3 = true;
@@ -114,7 +114,7 @@ void MovieStory::AllSentencePrint(void) {
 	count3 = nowstory[sentence + 2].length();
 }
 
-void MovieStory::LoadCsv(void) {
+void MovieStory::LoadCsv(void) {					//次の会話に移行する処理
 	line += 3;
 	storycount++;
 	nowstory[sentence] = csv.get<String>(line, 0);

@@ -6,7 +6,7 @@ void PrintFrame::SetFrameCount(void) {
 }
 
 
-void PrintFrame::UpFramePrint(void) {
+void PrintFrame::UpFramePrint(void) {				//ã‚Ì‰æ–Ê‚É”’˜g‚ğ•`‰æ‚·‚éˆ—
 	if (upframecount == 0 &&  System::FrameCount() % 4 == 0) {
 		upframecount++;
 		Rect(550, 310, 180, 50).drawFrame(5, Palette::White);
@@ -32,7 +32,7 @@ void PrintFrame::UpFramePrint(void) {
 	}
 }
 
-void PrintFrame::DownFramePrint(void) {
+void PrintFrame::DownFramePrint(void) {					//‰º‰æ–Ê‚É”’˜g‚ğ•`‰æ‚·‚éˆ—
 	if (downframecount == 0 && System::FrameCount() % 4 == 0) {
 		downframecount++;
 		Rect(550, 360, 180, 50).drawFrame(5, Palette::White);
