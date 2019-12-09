@@ -2,8 +2,9 @@
 #include"Battle.h"
 
 
-Battle::Battle(void) {
 
+Battle::Battle(void) {
+	
 }
 
 Battle::~Battle(void) {
@@ -18,4 +19,5 @@ void Battle::update(void) {
 
 void Battle::draw(void) {
 	Print << U"RPGƒoƒgƒ‹‰æ–Ê‚Å‚·";
+
 }

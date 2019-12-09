@@ -9,6 +9,7 @@
 #include"Ending.h"
 
 
+
 class SceneManager {				//シ－ン管理用クラス
 	public:
 		enum SCENE {

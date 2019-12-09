@@ -26,6 +26,7 @@ void SceneManager::sceneDraw() {
 void SceneManager::SetNextScene(SCENE next) {
 	nextscene = next;
 }
+
 void SceneManager::ChangeScene() {
 	switch (nextscene){
 	case SCENE_TITLE:
