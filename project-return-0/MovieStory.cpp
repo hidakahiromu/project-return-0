@@ -1,6 +1,7 @@
 #include"SceneManager.h"
 #include"MovieStory.h"
 
+
 #define X 30						//文字の描画間隔のX座標（後で変更）
 #define Y 50						//文の描画間隔のY座標（後で変更）
 

@@ -1,5 +1,6 @@
 #include"SceneManager.h"
 #include"Difficult.h"
+#include"Character.h"
 
 
 Difficult::Difficult(void) {

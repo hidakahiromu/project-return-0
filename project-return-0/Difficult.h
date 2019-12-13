@@ -1,6 +1,6 @@
 #pragma once
-#include<Siv3D.hpp>
 #include"Scene.h"
+#include<Siv3D.hpp>
 
 class Difficult : public Scene {		//難易度選択のクラス（Sceneクラスを継承）
 public:

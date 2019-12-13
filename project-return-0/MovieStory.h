@@ -1,7 +1,7 @@
 #pragma once
-#include<Siv3D.hpp>
 #include"Scene.h"
 #include"PrintFrame.h"
+#include<Siv3D.hpp>
 
 
 class MovieStory : public Scene , public PrintFrame  {		//難易度選択のクラス（Sceneクラスを継承）

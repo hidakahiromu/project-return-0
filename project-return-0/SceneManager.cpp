@@ -1,5 +1,7 @@
 #include"SceneManager.h"
 
+Character* SceneManager::character;
+Enemy* SceneManager::enemy;
 Scene* SceneManager::scene;
 SceneManager::SCENE SceneManager::nowscene;
 SceneManager::SCENE SceneManager::nextscene;
@@ -42,6 +44,8 @@ void SceneManager::ChangeScene() {
 	case SCENE_GAME_ACTION:
 		delete scene;
 		scene = new GameAction();
+		character = new Character();
+		enemy = new Enemy();
 		break;
 
 	case SCENE_MOVIE_STORY:

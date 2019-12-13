@@ -2,6 +2,7 @@
 #include"Ending.h"
 
 
+
 Ending::Ending(void) {
 
 }

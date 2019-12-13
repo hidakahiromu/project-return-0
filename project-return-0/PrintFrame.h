@@ -1,5 +1,5 @@
 #pragma once
-#include<siv3d.hpp>
+#include<Siv3D.hpp>
 
 class PrintFrame {
 public:

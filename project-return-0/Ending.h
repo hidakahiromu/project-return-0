@@ -1,6 +1,6 @@
 #pragma once
-#include<Siv3D.hpp>
 #include"Scene.h"
+#include<Siv3D.hpp>
 
 class Ending : public Scene {		//エンディングのクラス（Sceneクラスを継承）
 public:

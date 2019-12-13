@@ -1,5 +1,5 @@
 #pragma once
-# include <Siv3D.hpp>
+#include<Siv3D.hpp>
 #include"Scene.h"
 #include"Title.h"
 #include"Difficult.h"
@@ -7,6 +7,8 @@
 #include"MovieStory.h"
 #include"Battle.h"
 #include"Ending.h"
+#include"Character.h"
+#include"Enemy.h"
 
 
 
@@ -27,6 +29,8 @@ class SceneManager {				//シ－ン管理用クラス
 		static void sceneDraw();			//drawの箱
 		static void SetNextScene(SCENE next);
 	private:
+		static Character* character;
+		static Enemy* enemy;
 		static Scene *scene;
 		static SCENE nowscene;			//今のシーンはどこか
 		static SCENE nextscene;			//次は度のシーンに飛びたいか

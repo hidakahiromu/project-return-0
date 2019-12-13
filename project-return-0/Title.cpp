@@ -1,6 +1,7 @@
 #include"SceneManager.h"
 #include"Title.h"
 
+
 #define X 500				//ボックスのX座標
 #define Y 300				//ボックスのY座標
 #define W 200				//ボックスの幅

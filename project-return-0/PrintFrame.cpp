@@ -1,5 +1,6 @@
 #include"PrintFrame.h"
 
+
 void PrintFrame::SetFrameCount(void) {
 	upframecount = 0;
 	downframecount = 0;
