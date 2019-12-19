@@ -7,7 +7,8 @@ public:
 	~Enemy(void);
 	static void update(void);
 	static void draw(void);
-	static int NowHp(void);
+	static int SetHp(void);				//“G‚ÌHP‚ğ“n‚·ˆ—
 private:
+	static int enemyHp;					//“G‚ÌHP
 
 };

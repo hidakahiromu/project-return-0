@@ -1,6 +1,6 @@
 #include"Enemy.h"
 
-int enemyHp;
+int Enemy::enemyHp;
 
 Enemy::Enemy(void) {
 	enemyHp = 100;
@@ -18,7 +18,7 @@ void Enemy::draw(void) {
 
 }
 
-int Enemy::NowHp(void) {
+int Enemy::SetHp(void) {
 	return enemyHp;
 }
 
