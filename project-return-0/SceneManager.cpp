@@ -55,7 +55,7 @@ void SceneManager::ChangeScene() {
 
 	case SCENE_BATTLE:
 		delete scene;
-		scene = new Battle();
+		scene = new Battle(character,enemy);
 		break;
 
 	case SCENE_ENDING:

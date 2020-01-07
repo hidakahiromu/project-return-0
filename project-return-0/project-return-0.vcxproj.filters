@@ -61,6 +61,9 @@
     <Filter Include="Resource Files\nlp\japanese\jumanpp">
       <UniqueIdentifier>{f6fe2a89-c647-48e2-bb2c-27b03b1aeced}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EnemyJobs">
+      <UniqueIdentifier>{b5ce80f3-b0bc-41ba-b5f4-ebb186d7f1bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -295,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mnotte.h">
+      <Filter>Header Files\EnemyJobs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

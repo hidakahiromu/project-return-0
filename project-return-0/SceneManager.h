@@ -28,7 +28,9 @@ class SceneManager {				//シ－ン管理用クラス
 		static void sceneUpdate();		//updateの箱
 		static void sceneDraw();			//drawの箱
 		static void SetNextScene(SCENE next);
+
 	private:
+
 		static Character* character;
 		static Enemy* enemy;
 		static Scene *scene;

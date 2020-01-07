@@ -15,6 +15,8 @@ private:
 	int count1, count2, count3;	//1文の文字数カウント用変数
 	int startX,startY;					//startXは描画開始位置x座標,startYは描画開始位置y座標
 
+	Audio *talk;
+
 	int line;			//csvの行管理用変数
 	CSVData csv;				//csv読み込む用
 	int storycount;				//今何章なのか

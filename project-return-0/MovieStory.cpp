@@ -16,6 +16,8 @@ MovieStory::MovieStory(void) {
 	csv.load(U"resource/story/test.csv");
 	FontAsset::Register(U"fontB", 30);
 
+	talk = new Audio(U"resource/musics/story_talk.wav");
+
 	nowstory[sentence] = csv.get<String>(line,0);
 	nowstory[sentence+1] = csv.get<String>(line + 1, 0);
 	nowstory[sentence+2] = csv.get<String>(line + 2, 0);
@@ -60,6 +62,7 @@ void MovieStory::draw(void) {
 void MovieStory::printSentence1(void) {		//‰ï˜b‚Ì‚Ps–Ú‚Ì•`‰æˆ—
 	if (System::FrameCount() % 5 == 0 && count1 < nowstory[sentence].length()) {
 		count1++;
+		talk->playOneShot();
 	}
 	for (int i = 0; i < count1; i++) {
 		FontAsset(U"fontB")(nowstory[sentence][i]).draw(startX+(X*i), startY);
@@ -75,6 +78,7 @@ void MovieStory::printSentence1(void) {		//‰ï˜b‚Ì‚Ps–Ú‚Ì•`‰æˆ—
 void MovieStory::printSentence2(void) {			//‰ï˜b‚Ì‚Qs–Ú‚Ì•`‰æˆ—
 	if (System::FrameCount() % 5 == 0 && count2 < nowstory[sentence+1].length()) {
 		count2++;
+		talk->playOneShot();
 	}
 	for (int j = 0; j < count2; j++) {
 		FontAsset(U"fontB")(nowstory[sentence+1][j]).draw(startX + (X * j), startY+Y);
@@ -88,12 +92,16 @@ void MovieStory::printSentence2(void) {			//‰ï˜b‚Ì‚Qs–Ú‚Ì•`‰æˆ—
 void MovieStory::printSentence3(void) {
 	if (System::FrameCount() % 5 == 0 && count3 < nowstory[sentence+2].length()) {
 		count3++;
+		talk->playOneShot();
 	}
 	for (int k = 0; k < count3; k++) {
 		FontAsset(U"fontB")(nowstory[sentence+2][k]).draw(startX + (X * k), startY + (Y*2));
 	}
 	if (count3 == nowstory[sentence+2].length()) {
 		on3 = true;
+	}
+	if (on3 == true ) {
+		Triangle(1200, 620, 15, 3.2).draw();
 	}
 }
 
