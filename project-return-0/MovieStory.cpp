@@ -1,6 +1,7 @@
 #include"SceneManager.h"
 #include"MovieStory.h"
 
+int MovieStory::nowStoryCSV=0;
 
 #define X 30						//文字の描画間隔のX座標（後で変更）
 #define Y 50						//文の描画間隔のY座標（後で変更）
@@ -11,9 +12,10 @@ MovieStory::MovieStory(void) {
 	SetOnFlagFalse();
 	startX = 300, startY = 370;
 	sentence = 0;
-	line = 0;
+	line = 2;
 	storycount = 1;
-	csv.load(U"resource/story/test.csv");
+	nowStoryCSV++;
+	ChangeCSV();
 	FontAsset::Register(U"fontB", 30);
 
 	talk = new Audio(U"resource/musics/story_talk.wav");
@@ -24,6 +26,7 @@ MovieStory::MovieStory(void) {
 }
 
 MovieStory::~MovieStory(void) {
+	delete talk;
 	SetOnFlagFalse();
 	storycount = 0;
 	sentence = 0;
@@ -32,7 +35,7 @@ MovieStory::~MovieStory(void) {
 }
 
 void MovieStory::update(void) {
-	if (storycount == csv.get<int>(0, 1)&& on3 == true && KeyEnter.down()) {//RPGバトルへ移行
+	if (storycount == csv.get<int>(1, 4)&& on3 == true && KeyEnter.down()) {//RPGバトルへ移行
 		SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
 	}
 	if (downframecount == 5 && on3 != true && KeyEnter.down()) {		//文字描画中にエンターキーを押すとすべて描画
@@ -129,4 +132,47 @@ void MovieStory::LoadCsv(void) {					//次の会話に移行する処理
 	nowstory[sentence] = csv.get<String>(line, 0);
 	nowstory[sentence + 1] = csv.get<String>(line + 1, 0);
 	nowstory[sentence + 2] = csv.get<String>(line + 2, 0);
+}
+
+void MovieStory::ChangeCSV(void) {
+	switch (nowStoryCSV){
+	case 1:												//エピローグ
+		csv.load(U"resource/story/story_prolgue.csv");
+		break;
+	case 2:
+		csv.load(U"resource/story/story_chapter1.csv");
+		break;
+	case 3:
+		csv.load(U"resource/story/story_chapter2.csv");
+		break;
+	case 4:
+		csv.load(U"resource/story/story_chapter3.csv");
+		break;
+	case 5:
+		csv.load(U"resource/story/story_chapter4.csv");
+		break;
+	case 6:
+		csv.load(U"resource/story/story_chapter5.csv");
+		break;
+	case 7:
+		csv.load(U"resource/story/story_chapter6.csv");
+		break;
+	case 8:
+		csv.load(U"resource/story/story_chapter7.csv");
+		break;
+	case 9:
+		csv.load(U"resource/story/story_chapter8.csv");
+		break;
+	case 10:
+		csv.load(U"resource/story/story_chapter9.csv");
+		break;
+	case 11:
+		csv.load(U"resource/story/story_chapter10.csv");
+		break;
+	case 12:													//エンディング
+		csv.load(U"resource/story/story_epilog.csv");
+		break;
+	default:
+		break;
+	}
 }

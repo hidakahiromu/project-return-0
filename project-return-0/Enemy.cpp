@@ -1,10 +1,11 @@
 #include"Enemy.h"
 
-int Enemy::enemyHp;
+int Enemy::enemyHp;					//“G‚ÌHP
 bool Enemy::EnemyTurnFlag;
 
 Enemy::Enemy(void) {
-	enemyHp = 100;
+	//enemyNowCount++;
+
 }
 
 Enemy::~Enemy(void) {
@@ -29,4 +30,3 @@ void Enemy::Damage(int damage) {
 void Enemy::OnEnemyFlag(bool next) {
 	EnemyTurnFlag = next;
 }
-

@@ -1,7 +1,6 @@
 #include"SceneManager.h"
 
 Character* SceneManager::character;
-Enemy* SceneManager::enemy;
 Scene* SceneManager::scene;
 SceneManager::SCENE SceneManager::nowscene;
 SceneManager::SCENE SceneManager::nextscene;

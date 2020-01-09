@@ -55,5 +55,5 @@ private:
 	static std::vector<String> skills;							//キャラクターのスキル
 	static int CharacterHp;										//キャラクターのHP
 	static bool CharacterTurnFlag;									//キャラクターのターンの時TRUE
-	static bool DefendFlag;
+	static bool DefendFlag;								//防御用のフラグ
 };

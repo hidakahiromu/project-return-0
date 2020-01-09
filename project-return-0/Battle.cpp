@@ -5,9 +5,9 @@ bool Battle::WinFlagCharacter;
 bool Battle::WinFlagEnemy;
 
 
-Battle::Battle(Character* character, Enemy* enemy) {
-	Cha = character;
-	Ene = enemy;
+Battle::Battle(Character* CHARACTER, Enemy* ENEMY) {
+	Cha = CHARACTER;
+	Ene = ENEMY;
 	WinFlagCharacter = false;
 	WinFlagEnemy = false;
 	Character::OnCharacterFlag(true);
@@ -22,16 +22,14 @@ Battle::~Battle(void) {
 }
 
 void Battle::update(void) {
+	if (KeyA.down()) {
+		SceneManager::SetNextScene(SceneManager::SCENE_MOVIE_STORY);
+	}
 	Cha->update();
 	Ene->update();
-	/*if(CharacterHP <= 0) {//エンディングへ移行
-		SceneManager::SetNextScene(SceneManager::SCENE_ENDING);
+	if(WinFlagCharacter == true || WinFlagEnemy == true) {			//どちらかの体力がなくなり、フラグがたったらエンディングへ移行
+		//SceneManager::SetNextScene(SceneManager::SCENE_ENDING);
 	}
-	SelectMenu();
-	DecisionSelect();
-	if (KeyA.down()) {				//テスト用Aボタンを押すと体力が減る
-		CharacterHP -= 15;
-	}*/
 }
 
 void Battle::draw(void) {

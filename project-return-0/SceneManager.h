@@ -32,7 +32,6 @@ class SceneManager {				//シ－ン管理用クラス
 	private:
 
 		static Character* character;
-		static Enemy* enemy;
 		static Scene *scene;
 		static SCENE nowscene;			//今のシーンはどこか
 		static SCENE nextscene;			//次は度のシーンに飛びたいか

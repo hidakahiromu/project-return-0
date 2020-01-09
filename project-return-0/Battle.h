@@ -1,4 +1,6 @@
 #pragma once
+class Character;
+class Enemy;
 #include"Scene.h"
 #include"Character.h"
 #include"Enemy.h"
@@ -9,7 +11,7 @@
 
 class Battle : public Scene {		//RPGバトルのクラス（Sceneクラスを継承）
 public:
-	Battle(Character* character,Enemy* enemy);				//初期化処理
+	Battle(Character* CHARACTER );				//初期化処理
 	~Battle(void);				//開放処理
 	void update(void);			//計算系処理(Sceneのupdateをオーバーライド)
 	void draw(void);			//描画系処理(Sceneのdrawをオーバーライド)

@@ -303,7 +303,7 @@ void Character::PropertySwitch(void) {			//持ち物の種類（効果などを書く）
 }
 
 
-void Character::IntervalInitialize(void) {
+void Character::IntervalInitialize(void) {					//中間初期化（主にEnemyのターンからCharacterのターンになったら使う）
 	telopFlag = false;
 	skillFlag = false;
 	propertyFlag = false;
@@ -311,11 +311,11 @@ void Character::IntervalInitialize(void) {
 	now_select = 0;
 }
 
-void Character::OnCharacterFlag(bool now) {
+void Character::OnCharacterFlag(bool now) {				//trueの時Characterのターン
 	CharacterTurnFlag = now;
 }
 
-void Character::Damage(int damage) {
+void Character::Damage(int damage) {					//Enemyで使うダメージをもらってくる処理
 	if (DefendFlag == true) {
 		CharacterHp -= damage / 2;
 	}
