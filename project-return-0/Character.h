@@ -1,10 +1,6 @@
 #pragma once
 #include<Siv3D.hpp>
-#include"Enemy.h"
-#include"Battle.h"
-#include<vector>
-#include <algorithm>    
-#include <iterator> 
+
 
 class Character {
 public:

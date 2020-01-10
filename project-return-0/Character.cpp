@@ -1,4 +1,9 @@
 #include"Character.h"
+#include"Enemy.h"
+#include"Battle.h"
+#include<vector>
+#include <algorithm>    
+#include <iterator> 
 
 std::vector<String> Character::property;			//持ち物
 std::vector<String> Character::skills;				//スキル
@@ -273,6 +278,7 @@ void Character::PropertyDraw(void) {				//キャラクターの持ち物を描画
 }
 
 void Character::SearchDraw(void) {			//TODO::テキストデータか、CSVデータから敵の情報を取ってくる
+	Enemy::PrintExplanation();
 	if (KeyBackspace.down()) {			//ステータス描画に戻る時効果音とnowselectを0に戻す（ここはいるのか？）
 		Back->play();
 		ChangeDraw(NONE_DRAW);

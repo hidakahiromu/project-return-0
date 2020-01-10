@@ -44,7 +44,6 @@ void SceneManager::ChangeScene() {
 		delete scene;
 		scene = new GameAction();
 		character = new Character();
-		enemy = new Enemy();
 		break;
 
 	case SCENE_MOVIE_STORY:
@@ -54,7 +53,7 @@ void SceneManager::ChangeScene() {
 
 	case SCENE_BATTLE:
 		delete scene;
-		scene = new Battle(character,enemy);
+		scene = new Battle(character);
 		break;
 
 	case SCENE_ENDING:

@@ -64,6 +64,9 @@
     <Filter Include="Header Files\EnemyJobs">
       <UniqueIdentifier>{b5ce80f3-b0bc-41ba-b5f4-ebb186d7f1bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\EnemyJobs">
+      <UniqueIdentifier>{37c983e4-e250-4e26-83f9-7fb5103ab206}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -98,6 +101,27 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mnotte.cpp">
+      <Filter>Source Files\EnemyJobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Abatte.cpp">
+      <Filter>Source Files\EnemyJobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Evoa.cpp">
+      <Filter>Source Files\EnemyJobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Gaia.cpp">
+      <Filter>Source Files\EnemyJobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Ramle.cpp">
+      <Filter>Source Files\EnemyJobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Totem.cpp">
+      <Filter>Source Files\EnemyJobs</Filter>
+    </ClCompile>
+    <ClCompile Include="Warp.cpp">
+      <Filter>Source Files\EnemyJobs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -300,6 +324,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mnotte.h">
+      <Filter>Header Files\EnemyJobs</Filter>
+    </ClInclude>
+    <ClInclude Include="Abatte.h">
+      <Filter>Header Files\EnemyJobs</Filter>
+    </ClInclude>
+    <ClInclude Include="Totem.h">
+      <Filter>Header Files\EnemyJobs</Filter>
+    </ClInclude>
+    <ClInclude Include="Ramle.h">
+      <Filter>Header Files\EnemyJobs</Filter>
+    </ClInclude>
+    <ClInclude Include="Warp.h">
+      <Filter>Header Files\EnemyJobs</Filter>
+    </ClInclude>
+    <ClInclude Include="Gaia.h">
+      <Filter>Header Files\EnemyJobs</Filter>
+    </ClInclude>
+    <ClInclude Include="Evoa.h">
       <Filter>Header Files\EnemyJobs</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,13 +1,26 @@
 #include"SceneManager.h"
 #include"Battle.h"
+#include"Character.h"
+#include"Enemy.h"
+#include<vector>
+#include"Mnotte.h"
+#include"Abatte.h"
+#include"Totem.h"
+#include"Ramle.h"
+#include"Warp.h"
+#include"Gaia.h"
+#include"Evoa.h"
 
 bool Battle::WinFlagCharacter;
 bool Battle::WinFlagEnemy;
 
+int Battle::NowEnemyCount = 0;
 
-Battle::Battle(Character* CHARACTER, Enemy* ENEMY) {
+
+Battle::Battle(Character* CHARACTER) {
+	NowEnemyCount++;
+	ChangeEnemy(NowEnemyCount);
 	Cha = CHARACTER;
-	Ene = ENEMY;
 	WinFlagCharacter = false;
 	WinFlagEnemy = false;
 	Character::OnCharacterFlag(true);
@@ -62,5 +75,33 @@ void Battle::OnFlagFinalized(bool end) {			//TRUEならキャラクターの勝ち、FALSEな
 	}
 	else {
 		WinFlagEnemy = true;
+	}
+}
+
+void Battle::ChangeEnemy(int count) {
+	switch (count){
+	case 1:
+		Ene = new Mnotte();
+		break;
+	case 2:
+		Ene = new Abatte();
+		break;
+	case 3:
+		Ene = new Totem();
+		break;
+	case 4:
+		Ene = new Ramle();
+		break;
+	case 5:
+		Ene = new Warp();
+		break;
+	case 6:
+		Ene = new Gaia();
+		break;
+	case 7:
+		Ene = new Evoa();
+		break;
+	default:
+		break;
 	}
 }

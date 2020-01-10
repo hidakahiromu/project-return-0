@@ -1,6 +1,8 @@
 #include"SceneManager.h"
 #include"MovieStory.h"
 
+//TODO::あとは画像と名前を乗っけるだけ
+
 int MovieStory::nowStoryCSV=0;
 
 #define X 30						//文字の描画間隔のX座標（後で変更）
