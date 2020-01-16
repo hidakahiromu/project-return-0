@@ -1,4 +1,5 @@
 #include"Character.h"
+#include"Difficult.h"
 #include"Enemy.h"
 #include"Battle.h"
 #include<vector>
@@ -44,7 +45,7 @@ void Character::update(void) {
 			}
 		}
 		else {
-			if (KeyEnter.down()) {				//攻撃、防御、持ち物を選んだ時にここに分岐する
+			if (KeyZ.down()) {				//攻撃、防御、持ち物を選んだ時にここに分岐する
 				IntervalInitialize();
 				Character::OnCharacterFlag(false);
 				Enemy::OnEnemyFlag(true);
@@ -136,7 +137,7 @@ void Character::MenuDraw(void) {			//攻撃、防御、持ち物、調べるの描画
 }
 
 void Character::SelectMenu(void) {				//攻撃、防御、持ち物、調べるの何を選択したのか
-	if (KeyEnter.down()) {
+	if (KeyZ.down()) {
 		Enter->play();
 		SwitchSelect();
 	}
@@ -156,7 +157,7 @@ void Character::SelectMenu(void) {				//攻撃、防御、持ち物、調べるの何を選択した
 }
 
 void Character::SkillSelect(void) {				//skillの何を選択したのかを貰う処理
-	if (KeyEnter.down()) {
+	if (KeyZ.down()) {
 		Enter->play();
 		telopFlag = true;
 		nowdraw = TELOP_DRAW;
@@ -188,7 +189,7 @@ void Character::SkillSelect(void) {				//skillの何を選択したのかを貰う処理
 }
 
 void Character::PropertySelect(void) {					//持ち物の何をもらってきたのかをもらってくる処理
-	if (KeyEnter.down()) {
+	if (KeyZ.down()) {
 		Enter->play();
 		telopFlag = true;
 		Funcdraw = &Character::PropertySwitch;
@@ -223,10 +224,11 @@ void Character::StatusDraw(void) {				//キャラクターのステータスを描画する処理（
 	Rect(600, 380, CharacterHp/HP_Max*HP_Width, 30).draw(Palette::Green);
 	Rect(600, 380, HP_Width, 30).drawFrame(1);
 	FontAsset(U"CharaF")(U"HP").draw(600, 370,Palette::Blue);
+	FontAsset(U"CharaF")(Difficult::GetCharacterName).draw(450, 380);
 }
 
 void Character::SkillDraw(void) {				//skillの描画
-	if (KeyBackspace.down()) {			//ステータス描画に戻る時効果音とnowselectを0に戻す
+	if (KeyX.down()) {			//ステータス描画に戻る時効果音とnowselectを0に戻す
 		skillFlag = false;
 		Back->play();
 		ChangeDraw(NONE_DRAW);
@@ -250,12 +252,12 @@ void Character::SkillDraw(void) {				//skillの描画
 
 void Character::DefendDraw(void) {				//防御の描画（ここはあまりすることがなかったので形だけ作った）
 	telopFlag = true;
-	FontAsset(U"CharaF")(U"キャラクター名は身構えた！！").draw(550,380);
+	FontAsset(U"CharaF")(U"は身構えた！！").draw(550,380);
 	OnFlagDefend(true);
 }
 
 void Character::PropertyDraw(void) {				//キャラクターの持ち物を描画
-	if (KeyBackspace.down()) {			//ステータス描画に戻る時効果音とnowselectを0に戻す
+	if (KeyX.down()) {			//ステータス描画に戻る時効果音とnowselectを0に戻す
 		propertyFlag = false;
 		Back->play();
 		ChangeDraw(NONE_DRAW);
@@ -279,7 +281,7 @@ void Character::PropertyDraw(void) {				//キャラクターの持ち物を描画
 
 void Character::SearchDraw(void) {			//TODO::テキストデータか、CSVデータから敵の情報を取ってくる
 	Enemy::PrintExplanation();
-	if (KeyBackspace.down()) {			//ステータス描画に戻る時効果音とnowselectを0に戻す（ここはいるのか？）
+	if (KeyX.down()) {			//ステータス描画に戻る時効果音とnowselectを0に戻す（ここはいるのか？）
 		Back->play();
 		ChangeDraw(NONE_DRAW);
 		now_select = 0;
@@ -301,7 +303,7 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 
 void Character::PropertySwitch(void) {			//持ち物の種類（効果などを書く）
 	if (property[now_select]== U"回復草") {
-
+		
 	}
 	if (property[now_select] == U"回復薬") {
 

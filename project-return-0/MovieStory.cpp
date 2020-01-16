@@ -37,6 +37,9 @@ MovieStory::~MovieStory(void) {
 }
 
 void MovieStory::update(void) {
+	if (KeyControl.down()) {
+		SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
+	}
 	if (storycount == csv.get<int>(1, 4)&& on3 == true && KeyEnter.down()) {//RPGƒoƒgƒ‹‚ÖˆÚs
 		SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
 	}

@@ -10,9 +10,9 @@ class Title : public Scene {			//タイトルのクラス（Sceneクラスを継承）
 		void draw(void);				//タイトルの描画系処理(Sceneのdrawをオーバーライド)
 
 	private:
-		int selectBox;					//ボタン管理用の変数
-
-		void boxDraw(void);				//開始と終了の箱作成
-		void selectBoxEffect(void);		//開始と終了を選択したときのエフェクト
+		Audio* title_BGM;
+		bool startFlag, endFlag;		//スタートか終了のどちらを選択しているのかを管理するフラグ
+		void NowSelectTriangle(void);			//スタートか終了のどちらを選択しているのかを三角形を描画して表示
+		void NowFlag(void);				//スタートか終了のどちらのフラグがたっているのか管理する関数
 
 };

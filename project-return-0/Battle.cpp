@@ -35,9 +35,7 @@ Battle::~Battle(void) {
 }
 
 void Battle::update(void) {
-	if (KeyA.down()) {
-		SceneManager::SetNextScene(SceneManager::SCENE_MOVIE_STORY);
-	}
+
 	Cha->update();
 	Ene->update();
 	if(WinFlagCharacter == true || WinFlagEnemy == true) {			//どちらかの体力がなくなり、フラグがたったらエンディングへ移行

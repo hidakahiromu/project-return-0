@@ -8,5 +8,10 @@ public:
 	~Difficult(void);				//開放処理
 	void update(void);			//計算系処理(Sceneのupdateをオーバーライド)
 	void draw(void);			//描画系処理(Sceneのdrawをオーバーライド)
+
+	static void SetCharacterName(String text);
+	static String GetCharacterName(void);
 private:
+	TextEditState tes1;
+	static String character_name;
 };
