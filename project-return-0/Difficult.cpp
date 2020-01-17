@@ -1,9 +1,11 @@
 #include"SceneManager.h"
 #include"Difficult.h"
+#include"Character.h"
 
+String character_name;
 
 Difficult::Difficult(void) {
-
+	FontAsset::Register(U"DifF", 30);
 }
 
 Difficult::~Difficult(void) {
@@ -11,11 +13,21 @@ Difficult::~Difficult(void) {
 }
 
 void Difficult::update(void) {
-	if (KeyEnter.down()) {//ゲームへ移行
-		SceneManager::SetNextScene(SceneManager::SCENE_GAME_ACTION);
+	if (SimpleGUI::Button(U"決定", Vec2(600, 360), 150)) {
+		SetCharacterName(tes1.text);
+		SceneManager::SetNextScene(SceneManager::SCENE_MOVIE_STORY);
 	}
 }
 
 void Difficult::draw(void) {
-	Print << U"難易度選択画面です";
+	FontAsset(U"DifF")(U"名前を入力してください").draw(450,250);
+	SimpleGUI::TextBox(tes1, Vec2(600, 300));
+}
+
+void Difficult::SetCharacterName(String text) {
+	character_name = text;
+}
+
+String Difficult::GetCharacterName(void) {
+	return character_name;
 }

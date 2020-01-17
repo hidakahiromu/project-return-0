@@ -1,21 +1,50 @@
 #include"SceneManager.h"
 #include"Title.h"
 
+//ToDo::ＳＥと画像貼り付けるだけ
 
 Title::Title(void) {
-
+	startFlag = false;
+	endFlag = false;
+	title_BGM = new Audio(U"resource/musics/famipop.wav");
+	title_BGM->setLoop(true);
+	title_BGM->play();
 }
 
 Title::~Title(void) {
-
+	delete title_BGM;
 }
 
-void Title::update(void) {
-	if (KeyEnter.down()) {//難易度選択へ移行
+void Title::update(void){
+	NowFlag();
+	if (startFlag == true && KeyEnter.down()) {
 		SceneManager::SetNextScene(SceneManager::SCENE_DIFFICULT);
+	}
+	if (endFlag == true && KeyEnter.down()) {
+		//ToDo::ここに終了処理を描く
 	}
 }
 
 void Title::draw(void) {
-	Print << U"タイトルです";
+	NowSelectTriangle();
+}
+
+void Title::NowFlag(void) {
+	if (startFlag == false && KeyUp.down()) {
+		startFlag = true;
+		endFlag = false;
+	}
+	if (endFlag == false && KeyDown.down()) {
+		startFlag = false;
+		endFlag = true;
+	}
+}
+
+void Title::NowSelectTriangle(void) {			//ToDo::Ｙ座標もうちょっと下
+	if (startFlag == true) {
+		Triangle(500, 300, 25, 6).draw();
+	}
+	if (endFlag == true) {
+		Triangle(500, 400, 25, 6).draw();
+	}
 }

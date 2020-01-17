@@ -2,6 +2,7 @@
 #include"GameAction.h"
 # include <Siv3D.hpp>
 
+
 GameAction::GameAction(void) {
 	TextureAsset::Register(U"backTex",U"example/windmill.png");//背景画像ロード
 	TextureAsset::Register(U"blockTex", U"image/Brick.png");//ブロック画像ロード
