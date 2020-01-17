@@ -26,6 +26,7 @@ private:
 
 	int frame1X, frame1Y;					//選択画面の白枠のX座標とY座標
 	int frame2X, frame2Y;					//↑と同じ
+	//String enemyName;						//敵の名前
 	
 	void (Battle::* FuncDraw)(void);
 	void PrintFrame1(void);	

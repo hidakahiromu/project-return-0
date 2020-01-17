@@ -37,13 +37,13 @@ void SceneManager::ChangeScene() {
 
 	case SCENE_DIFFICULT:
 		delete scene;
+		character = new Character();
 		scene = new Difficult();
 		break;
 
 	case SCENE_GAME_ACTION:
 		delete scene;
 		scene = new GameAction();
-		character = new Character();
 		break;
 
 	case SCENE_MOVIE_STORY:

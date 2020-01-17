@@ -1,49 +1,50 @@
 #include"SceneManager.h"
 #include"Title.h"
 
-
-#define X 500				//ボックスのX座標
-#define Y 300				//ボックスのY座標
-#define W 200				//ボックスの幅
-#define H 50				//ボックスの高さ
-
+//ToDo::ＳＥと画像貼り付けるだけ
 
 Title::Title(void) {
-	selectBox = 0;
+	startFlag = false;
+	endFlag = false;
+	title_BGM = new Audio(U"resource/musics/famipop.wav");
+	title_BGM->setLoop(true);
+	title_BGM->play();
 }
 
 Title::~Title(void) {
-
+	delete title_BGM;
 }
 
 void Title::update(void){
-	selectBoxEffect();
-	if (selectBox == 1 && KeyEnter.down()) {
+	NowFlag();
+	if (startFlag == true && KeyEnter.down()) {
 		SceneManager::SetNextScene(SceneManager::SCENE_DIFFICULT);
+	}
+	if (endFlag == true && KeyEnter.down()) {
+		//ToDo::ここに終了処理を描く
 	}
 }
 
 void Title::draw(void) {
-	Print << U"タイトルです";
-	boxDraw();
+	NowSelectTriangle();
 }
 
-void Title::boxDraw(void) {
-	Rect(X,Y,W,H).draw(Palette::White);
-	Rect(X, Y+150, W, H).draw(Palette::White);
-	if (selectBox == 1) {
-		Rect(X, Y, W, H).draw(Palette::Red);
+void Title::NowFlag(void) {
+	if (startFlag == false && KeyUp.down()) {
+		startFlag = true;
+		endFlag = false;
 	}
-	if (selectBox == 2) {
-		Rect(X, Y+150, W, H).draw(Palette::Red);
+	if (endFlag == false && KeyDown.down()) {
+		startFlag = false;
+		endFlag = true;
 	}
 }
 
-void Title::selectBoxEffect(void) {
-	if (selectBox != 1 && KeyUp.down()) {
-		selectBox = 1;
+void Title::NowSelectTriangle(void) {			//ToDo::Ｙ座標もうちょっと下
+	if (startFlag == true) {
+		Triangle(500, 300, 25, 6).draw();
 	}
-	if (selectBox != 2 && KeyDown.down()) {
-		selectBox = 2;
+	if (endFlag == true) {
+		Triangle(500, 400, 25, 6).draw();
 	}
 }
