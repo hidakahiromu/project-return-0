@@ -23,6 +23,7 @@ Battle::Battle(Character* CHARACTER) {
 	Cha = CHARACTER;
 	WinFlagCharacter = false;
 	WinFlagEnemy = false;
+	Character::turncount = 0;
 	Character::OnCharacterFlag(true);
 	Enemy::OnEnemyFlag(false);
 	FontAsset::Register(U"FB",30);

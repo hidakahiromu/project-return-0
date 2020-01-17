@@ -4,6 +4,7 @@
 #include<vector>
 #include <algorithm>    
 #include <iterator> 
+#include <time.h> 
 
 std::vector<String> Character::property;			//持ち物
 std::vector<String> Character::skills;				//スキル
@@ -17,7 +18,7 @@ Character::Character(void) {
 	Back = new Audio(U"resource/musics/rpg_back.wav");
 	select_Point_X = 90;
 	select_Point_Y = 400;
-	CharacterHp = 100;
+	CharacterHp = 500;
 	HP_Width = 200;
 	HP_Max = CharacterHp;
 	property = {U"回復草",U"回復薬"};
@@ -288,13 +289,58 @@ void Character::SearchDraw(void) {			//TODO::テキストデータか、CSVデータから敵の
 }
 
 void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
+	srand((unsigned)time(NULL));
+	if (skills[now_select] == U"print") {
+		FontAsset(U"CharaF")(U"キャラ名はprintf攻撃を行った！").draw(550, 380);
+		attackpoint = (100 * rand() & 21 + 90) / 100;
+		FontAsset(U"CharaF")(U"敵名に", attackpoint, U"のダメージ！！").draw(550, 420);
+		Enemy::Damage(attackpoint);
+	}
+	if (skills[now_select] == U"if") {
+		FontAsset(U"CharaF")(U"キャラ名はif攻撃を行った！").draw(550, 380);
+		attackpoint = (50 *turncount * rand() & 21 + 90) / 100;
+		FontAsset(U"CharaF")(U"敵名に", attackpoint, U"のダメージ！！").draw(550, 420);
+		Enemy::Damage(attackpoint);
+	}
 	if (skills[now_select] == U"for") {
 		FontAsset(U"CharaF")(U"キャラ名はfor文攻撃を行った！").draw(550, 380);
-		FontAsset(U"CharaF")(U"敵名に三万のダメージ！！").draw(550, 420);
-		Enemy::Damage(50);
+		int attacktimes = rand() % 4;
+		if (attacktimes > 0) {
+			for (static int attackcount = 0; attackcount < attacktimes; attackcount++) {
+				attackpoint = (100 * rand() & 21 + 90) / 100;
+				FontAsset(U"CharaF")(U"敵名に", attackpoint, U"のダメージ！！").draw(550, 420);
+				Enemy::Damage(attackpoint);
+			}
+		}
+		else {
+			FontAsset(U"CharaF")(U"キャラ名の攻撃は外れてしまった！！").draw(550, 420);
+		}
 	}
-	if (skills[now_select] == U"print") {
-
+	if (skills[now_select] == U"do-while") {
+		FontAsset(U"CharaF")(U"キャラ名はdo-while攻撃を行った！").draw(550, 380);
+		int attacktimes = rand() % 5+1;
+		for (int attackcount = 0; attackcount < attacktimes; attackcount++) {
+			attackpoint = (60 * rand() & 21 + 90) / 100;
+			FontAsset(U"CharaF")(U"敵名に", attackpoint, U"のダメージ！！").draw(550, 420);
+			Enemy::Damage(attackpoint);
+		}
+	}
+	if (skills[now_select] == U"scanf") {
+		FontAsset(U"CharaF")(U"キャラ名はscanf攻撃を行った！").draw(550, 380);
+		attackpoint = (50 * rand() & 21 + 90) / 100;
+		FontAsset(U"CharaF")(U"敵名に", attackpoint, U"のダメージ！！").draw(550, 420);
+		Enemy::Damage(attackpoint);
+	}
+	if (skills[now_select] == U"switch") {
+		FontAsset(U"CharaF")(U"キャラ名はswitch攻撃を行った！").draw(550, 380);
+		if (7 > rand() % 10) {
+			attackpoint = (300 * rand() & 21 + 90) / 100;
+			FontAsset(U"CharaF")(U"敵名に", attackpoint, U"のダメージ！！").draw(550, 420);
+			Enemy::Damage(attackpoint);
+		}
+		else {
+			FontAsset(U"CharaF")(U"キャラ名の攻撃は外れてしまった！！").draw(550, 420);
+		}
 	}
 
 }
@@ -319,6 +365,7 @@ void Character::IntervalInitialize(void) {					//中間初期化（主にEnemyのターンか
 
 void Character::OnCharacterFlag(bool now) {				//trueの時Characterのターン
 	CharacterTurnFlag = now;
+	turncount += 1;
 }
 
 void Character::Damage(int damage) {					//Enemyで使うダメージをもらってくる処理

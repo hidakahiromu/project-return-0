@@ -37,6 +37,8 @@ public:
 	void SkillsSwitch(void);					//攻撃の種類（スキル）分岐
 	void PropertySwitch(void);					//道具（持ち物）の効果分岐
 
+	static int turncount;				//現在のターン数
+
 private:
 	Audio *Select, *Enter, *Back;
 	int now_select;						//攻撃、防御、持ち物、調べるの何を押したのかを判定するための変数
@@ -52,4 +54,5 @@ private:
 	static int CharacterHp;										//キャラクターのHP
 	static bool CharacterTurnFlag;									//キャラクターのターンの時TRUE
 	static bool DefendFlag;								//防御用のフラグ
+	int attackpoint;				//与ダメージ量
 };
