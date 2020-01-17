@@ -78,9 +78,6 @@
     <ClCompile Include="Title.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameAction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Difficult.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -297,9 +294,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Title.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Difficult.h">

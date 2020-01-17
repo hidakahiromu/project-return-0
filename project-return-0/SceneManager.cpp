@@ -41,11 +41,6 @@ void SceneManager::ChangeScene() {
 		scene = new Difficult();
 		break;
 
-	case SCENE_GAME_ACTION:
-		delete scene;
-		scene = new GameAction();
-		break;
-
 	case SCENE_MOVIE_STORY:
 		delete scene;
 		scene = new MovieStory();

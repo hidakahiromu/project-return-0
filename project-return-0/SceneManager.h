@@ -3,7 +3,6 @@
 #include"Scene.h"
 #include"Title.h"
 #include"Difficult.h"
-#include"GameAction.h"
 #include"MovieStory.h"
 #include"Battle.h"
 #include"Ending.h"
@@ -17,7 +16,7 @@ class SceneManager {				//シ－ン管理用クラス
 		enum SCENE {
 			SCENE_TITLE,			//Titleのシーン
 			SCENE_DIFFICULT,		//難易度の選択画面
-			SCENE_GAME_ACTION,				//アクションゲームのシーン
+			//SCENE_GAME_ACTION,				//アクションゲームのシーン
 			SCENE_MOVIE_STORY,		//ストーリーのシーン
 			SCENE_BATTLE,			//RPGゲームのシーン
 			SCENE_ENDING,			//エンディングの種類

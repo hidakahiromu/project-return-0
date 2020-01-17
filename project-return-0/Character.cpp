@@ -7,11 +7,12 @@
 #include <iterator> 
 #include <time.h> 
 
-std::vector<String> Character::property;			//æŒã¡ç‰©
-std::vector<String> Character::skills;				//ã‚¹ã‚­ãƒ«
-bool Character::CharacterTurnFlag;					//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ã‚¿ãƒ¼ãƒ³ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
-bool Character::DefendFlag;							//é˜²å¾¡ã®ãƒ•ãƒ©ã‚°
-int Character::CharacterHp;							//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®HP
+std::vector<String> Character::property;			//‚¿•¨
+std::vector<String> Character::skills;				//ƒXƒLƒ‹
+bool Character::CharacterTurnFlag;					//ƒLƒƒƒ‰ƒNƒ^[‚Ìƒ^[ƒ“‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+bool Character::DefendFlag;							//–hŒä‚Ìƒtƒ‰ƒO
+int Character::CharacterHp;							//ƒLƒƒƒ‰ƒNƒ^[‚ÌHP
+int Character::turncount;
 
 Character::Character(void) {
 	Select = new Audio(U"resource/musics/rpg_select.wav");
@@ -22,7 +23,7 @@ Character::Character(void) {
 	CharacterHp = 500;
 	HP_Width = 200;
 	HP_Max = CharacterHp;
-	property = {U"å›å¾©è‰",U"å›å¾©è–¬"};
+	property = {U"‰ñ•œ‘",U"‰ñ•œ–ò"};
 	skills = {U"for",U"printf",U"hidao"};
 	FontAsset::Register(U"CharaF", 30);
 	IntervalInitialize();
@@ -46,11 +47,11 @@ void Character::update(void) {
 			}
 		}
 		else {
-			if (KeyZ.down()) {				//æ”»æ’ƒã€é˜²å¾¡ã€æŒã¡ç‰©ã‚’é¸ã‚“ã æ™‚ã«ã“ã“ã«åˆ†å²ã™ã‚‹
+			if (KeyZ.down()) {				//UŒ‚A–hŒäA‚¿•¨‚ğ‘I‚ñ‚¾‚É‚±‚±‚É•ªŠò‚·‚é
 				IntervalInitialize();
 				Character::OnCharacterFlag(false);
 				Enemy::OnEnemyFlag(true);
-				//æ•µã®ãƒ•ãƒ©ã‚°ã‚’onã«ã—ã¦æ•µã®ã‚¿ãƒ¼ãƒ³ã«ã™ã‚‹
+				//“G‚Ìƒtƒ‰ƒO‚ğon‚É‚µ‚Ä“G‚Ìƒ^[ƒ“‚É‚·‚é
 			}
 		}
 	}
@@ -124,12 +125,12 @@ void Character::SwitchSelect(void) {
 }
 
 
-void Character::GetProperty(String tool) {				//ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ‹¾ã†å‡¦ç†		
+void Character::GetProperty(String tool) {				//ƒAƒCƒeƒ€‚ğE‚¤ˆ—		
 	property.push_back(tool);
 }
 
-void Character::MenuDraw(void) {			//æ”»æ’ƒã€é˜²å¾¡ã€æŒã¡ç‰©ã€èª¿ã¹ã‚‹ã®æç”»
-	String menu[4] = { U"æ”»æ’ƒ",U"é˜²å¾¡",U"æŒã¡ç‰©",U"èª¿ã¹ã‚‹" };
+void Character::MenuDraw(void) {			//UŒ‚A–hŒäA‚¿•¨A’²‚×‚é‚Ì•`‰æ
+	String menu[4] = { U"UŒ‚",U"–hŒä",U"‚¿•¨",U"’²‚×‚é" };
 	int menuY = 380;
 	for (int i = 0; i < 4; i++) {
 		FontAsset(U"CharaF")(menu[i]).draw(110, menuY);
@@ -137,7 +138,7 @@ void Character::MenuDraw(void) {			//æ”»æ’ƒã€é˜²å¾¡ã€æŒã¡ç‰©ã€èª¿ã¹ã‚‹ã®æ
 	}
 }
 
-void Character::SelectMenu(void) {				//æ”»æ’ƒã€é˜²å¾¡ã€æŒã¡ç‰©ã€èª¿ã¹ã‚‹ã®ä½•ã‚’é¸æŠã—ãŸã®ã‹
+void Character::SelectMenu(void) {				//UŒ‚A–hŒäA‚¿•¨A’²‚×‚é‚Ì‰½‚ğ‘I‘ğ‚µ‚½‚Ì‚©
 	if (KeyZ.down()) {
 		Enter->play();
 		SwitchSelect();
@@ -157,7 +158,7 @@ void Character::SelectMenu(void) {				//æ”»æ’ƒã€é˜²å¾¡ã€æŒã¡ç‰©ã€èª¿ã¹ã‚‹ã
 
 }
 
-void Character::SkillSelect(void) {				//skillã®ä½•ã‚’é¸æŠã—ãŸã®ã‹ã‚’è²°ã†å‡¦ç†
+void Character::SkillSelect(void) {				//skill‚Ì‰½‚ğ‘I‘ğ‚µ‚½‚Ì‚©‚ğ–á‚¤ˆ—
 	if (KeyZ.down()) {
 		Enter->play();
 		telopFlag = true;
@@ -189,7 +190,7 @@ void Character::SkillSelect(void) {				//skillã®ä½•ã‚’é¸æŠã—ãŸã®ã‹ã‚’è²°ã
 	Triangle(select_Point_X,select_Point_Y,25,6).draw();
 }
 
-void Character::PropertySelect(void) {					//æŒã¡ç‰©ã®ä½•ã‚’ã‚‚ã‚‰ã£ã¦ããŸã®ã‹ã‚’ã‚‚ã‚‰ã£ã¦ãã‚‹å‡¦ç†
+void Character::PropertySelect(void) {					//‚¿•¨‚Ì‰½‚ğ‚à‚ç‚Á‚Ä‚«‚½‚Ì‚©‚ğ‚à‚ç‚Á‚Ä‚­‚éˆ—
 	if (KeyZ.down()) {
 		Enter->play();
 		telopFlag = true;
@@ -220,16 +221,16 @@ void Character::PropertySelect(void) {					//æŒã¡ç‰©ã®ä½•ã‚’ã‚‚ã‚‰ã£ã¦ãã
 }
 
 
-void Character::StatusDraw(void) {				//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’æç”»ã™ã‚‹å‡¦ç†ï¼ˆTODO::ã¾ã åå‰ã¨SPã‚’ã¤ã‘ã¦ã„ãªã„ï¼‰
-	Rect(600, 380, HP_Max, 30).draw(Palette::Red);
+void Character::StatusDraw(void) {				//ƒLƒƒƒ‰ƒNƒ^[‚ÌƒXƒe[ƒ^ƒX‚ğ•`‰æ‚·‚éˆ—iTODO::‚Ü‚¾–¼‘O‚ÆSP‚ğ‚Â‚¯‚Ä‚¢‚È‚¢j
+	Rect(600, 380, HP_Width, 30).draw(Palette::Red);
 	Rect(600, 380, CharacterHp/HP_Max*HP_Width, 30).draw(Palette::Green);
 	Rect(600, 380, HP_Width, 30).drawFrame(1);
 	FontAsset(U"CharaF")(U"HP").draw(600, 370,Palette::Blue);
 	FontAsset(U"CharaF")(Difficult::GetCharacterName()).draw(450, 380);
 }
 
-void Character::SkillDraw(void) {				//skillã®æç”»
-	if (KeyX.down()) {			//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æç”»ã«æˆ»ã‚‹æ™‚åŠ¹æœéŸ³ã¨nowselectã‚’0ã«æˆ»ã™
+void Character::SkillDraw(void) {				//skill‚Ì•`‰æ
+	if (KeyX.down()) {			//ƒXƒe[ƒ^ƒX•`‰æ‚É–ß‚éŒø‰Ê‰¹‚Ænowselect‚ğ0‚É–ß‚·
 		skillFlag = false;
 		Back->play();
 		ChangeDraw(NONE_DRAW);
@@ -251,14 +252,14 @@ void Character::SkillDraw(void) {				//skillã®æç”»
 	}
 }
 
-void Character::DefendDraw(void) {				//é˜²å¾¡ã®æç”»ï¼ˆã“ã“ã¯ã‚ã¾ã‚Šã™ã‚‹ã“ã¨ãŒãªã‹ã£ãŸã®ã§å½¢ã ã‘ä½œã£ãŸï¼‰
+void Character::DefendDraw(void) {				//–hŒä‚Ì•`‰æi‚±‚±‚Í‚ ‚Ü‚è‚·‚é‚±‚Æ‚ª‚È‚©‚Á‚½‚Ì‚ÅŒ`‚¾‚¯ì‚Á‚½j
 	telopFlag = true;
-	FontAsset(U"CharaF")(Difficult::GetCharacterName(), U"ã¯èº«æ§‹ãˆãŸï¼ï¼").draw(550,380);
+	FontAsset(U"CharaF")(Difficult::GetCharacterName(), U"‚Íg\‚¦‚½II").draw(550,380);
 	OnFlagDefend(true);
 }
 
-void Character::PropertyDraw(void) {				//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æŒã¡ç‰©ã‚’æç”»
-	if (KeyX.down()) {			//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æç”»ã«æˆ»ã‚‹æ™‚åŠ¹æœéŸ³ã¨nowselectã‚’0ã«æˆ»ã™
+void Character::PropertyDraw(void) {				//ƒLƒƒƒ‰ƒNƒ^[‚Ì‚¿•¨‚ğ•`‰æ
+	if (KeyX.down()) {			//ƒXƒe[ƒ^ƒX•`‰æ‚É–ß‚éŒø‰Ê‰¹‚Ænowselect‚ğ0‚É–ß‚·
 		propertyFlag = false;
 		Back->play();
 		ChangeDraw(NONE_DRAW);
@@ -280,9 +281,9 @@ void Character::PropertyDraw(void) {				//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æŒã¡ç‰©ã‚’æç”
 	}
 }
 
-void Character::SearchDraw(void) {			//TODO::ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‹ã€CSVãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ•µã®æƒ…å ±ã‚’å–ã£ã¦ãã‚‹
+void Character::SearchDraw(void) {			//TODO::ƒeƒLƒXƒgƒf[ƒ^‚©ACSVƒf[ƒ^‚©‚ç“G‚Ìî•ñ‚ğæ‚Á‚Ä‚­‚é
 	Enemy::PrintExplanation();
-	if (KeyX.down()) {			//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹æç”»ã«æˆ»ã‚‹æ™‚åŠ¹æœéŸ³ã¨nowselectã‚’0ã«æˆ»ã™ï¼ˆã“ã“ã¯ã„ã‚‹ã®ã‹ï¼Ÿï¼‰
+	if (KeyX.down()) {			//ƒXƒe[ƒ^ƒX•`‰æ‚É–ß‚éŒø‰Ê‰¹‚Ænowselect‚ğ0‚É–ß‚·i‚±‚±‚Í‚¢‚é‚Ì‚©Hj
 		Back->play();
 		ChangeDraw(NONE_DRAW);
 		now_select = 0;
@@ -290,74 +291,74 @@ void Character::SearchDraw(void) {			//TODO::ãƒ†ã‚­ã‚¹ãƒˆãƒ‡ãƒ¼ã‚¿ã‹ã€CSVãƒ‡ãƒ
 
 }
 
-void Character::SkillsSwitch(void) {			//æ”»æ’ƒã®ç¨®é¡ï¼ˆæ›¸ãï¼‰
+void Character::SkillsSwitch(void) {			//UŒ‚‚Ìí—Şi‘‚­j
 	srand((unsigned)time(NULL));
 	if (skills[now_select] == U"print") {
-		FontAsset(U"CharaF")(U"ã‚­ãƒ£ãƒ©åã¯printfæ”»æ’ƒã‚’è¡Œã£ãŸï¼").draw(550, 380);
+		FontAsset(U"CharaF")(U"ƒLƒƒƒ‰–¼‚ÍprintfUŒ‚‚ğs‚Á‚½I").draw(550, 380);
 		attackpoint = (100 * rand() & 21 + 90) / 100;
-		FontAsset(U"CharaF")(U"æ•µåã«", attackpoint, U"ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ï¼ï¼").draw(550, 420);
+		FontAsset(U"CharaF")(U"“G–¼‚É", attackpoint, U"‚Ìƒ_ƒ[ƒWII").draw(550, 420);
 		Enemy::Damage(attackpoint);
 	}
 	if (skills[now_select] == U"if") {
-		FontAsset(U"CharaF")(U"ã‚­ãƒ£ãƒ©åã¯ifæ”»æ’ƒã‚’è¡Œã£ãŸï¼").draw(550, 380);
+		FontAsset(U"CharaF")(U"ƒLƒƒƒ‰–¼‚ÍifUŒ‚‚ğs‚Á‚½I").draw(550, 380);
 		attackpoint = (50 *turncount * rand() & 21 + 90) / 100;
-		FontAsset(U"CharaF")(U"æ•µåã«", attackpoint, U"ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ï¼ï¼").draw(550, 420);
+		FontAsset(U"CharaF")(U"“G–¼‚É", attackpoint, U"‚Ìƒ_ƒ[ƒWII").draw(550, 420);
 		Enemy::Damage(attackpoint);
 	}
 	if (skills[now_select] == U"for") {
-		FontAsset(U"CharaF")(Difficult::GetCharacterName(),U"ã¯foræ–‡æ”»æ’ƒã‚’è¡Œã£ãŸï¼").draw(550, 380);
+		FontAsset(U"CharaF")(Difficult::GetCharacterName(),U"‚Ífor•¶UŒ‚‚ğs‚Á‚½I").draw(550, 380);
 		int attacktimes = rand() % 4;
 		if (attacktimes > 0) {
 			for (static int attackcount = 0; attackcount < attacktimes; attackcount++) {
 				attackpoint = (100 * rand() & 21 + 90) / 100;
-				FontAsset(U"CharaF")(U"æ•µåã«", attackpoint, U"ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ï¼ï¼").draw(550, 420);
+				FontAsset(U"CharaF")(U"“G–¼‚É", attackpoint, U"‚Ìƒ_ƒ[ƒWII").draw(550, 420);
 				Enemy::Damage(attackpoint);
 			}
 		}
 		else {
-			FontAsset(U"CharaF")(U"ã‚­ãƒ£ãƒ©åã®æ”»æ’ƒã¯å¤–ã‚Œã¦ã—ã¾ã£ãŸï¼ï¼").draw(550, 420);
+			FontAsset(U"CharaF")(U"ƒLƒƒƒ‰–¼‚ÌUŒ‚‚ÍŠO‚ê‚Ä‚µ‚Ü‚Á‚½II").draw(550, 420);
 		}
 	}
 	if (skills[now_select] == U"do-while") {
-		FontAsset(U"CharaF")(U"ã‚­ãƒ£ãƒ©åã¯do-whileæ”»æ’ƒã‚’è¡Œã£ãŸï¼").draw(550, 380);
+		FontAsset(U"CharaF")(U"ƒLƒƒƒ‰–¼‚Ído-whileUŒ‚‚ğs‚Á‚½I").draw(550, 380);
 		int attacktimes = rand() % 5+1;
 		for (int attackcount = 0; attackcount < attacktimes; attackcount++) {
 			attackpoint = (60 * rand() & 21 + 90) / 100;
-			FontAsset(U"CharaF")(U"æ•µåã«", attackpoint, U"ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ï¼ï¼").draw(550, 420);
+			FontAsset(U"CharaF")(U"“G–¼‚É", attackpoint, U"‚Ìƒ_ƒ[ƒWII").draw(550, 420);
 			Enemy::Damage(attackpoint);
 		}
 	}
 	if (skills[now_select] == U"scanf") {
-		FontAsset(U"CharaF")(U"ã‚­ãƒ£ãƒ©åã¯scanfæ”»æ’ƒã‚’è¡Œã£ãŸï¼").draw(550, 380);
+		FontAsset(U"CharaF")(U"ƒLƒƒƒ‰–¼‚ÍscanfUŒ‚‚ğs‚Á‚½I").draw(550, 380);
 		attackpoint = (50 * rand() & 21 + 90) / 100;
-		FontAsset(U"CharaF")(U"æ•µåã«", attackpoint, U"ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ï¼ï¼").draw(550, 420);
+		FontAsset(U"CharaF")(U"“G–¼‚É", attackpoint, U"‚Ìƒ_ƒ[ƒWII").draw(550, 420);
 		Enemy::Damage(attackpoint);
 	}
 	if (skills[now_select] == U"switch") {
-		FontAsset(U"CharaF")(U"ã‚­ãƒ£ãƒ©åã¯switchæ”»æ’ƒã‚’è¡Œã£ãŸï¼").draw(550, 380);
+		FontAsset(U"CharaF")(U"ƒLƒƒƒ‰–¼‚ÍswitchUŒ‚‚ğs‚Á‚½I").draw(550, 380);
 		if (7 > rand() % 10) {
 			attackpoint = (300 * rand() & 21 + 90) / 100;
-			FontAsset(U"CharaF")(U"æ•µåã«", attackpoint, U"ã®ãƒ€ãƒ¡ãƒ¼ã‚¸ï¼ï¼").draw(550, 420);
+			FontAsset(U"CharaF")(U"“G–¼‚É", attackpoint, U"‚Ìƒ_ƒ[ƒWII").draw(550, 420);
 			Enemy::Damage(attackpoint);
 		}
 		else {
-			FontAsset(U"CharaF")(U"ã‚­ãƒ£ãƒ©åã®æ”»æ’ƒã¯å¤–ã‚Œã¦ã—ã¾ã£ãŸï¼ï¼").draw(550, 420);
+			FontAsset(U"CharaF")(U"ƒLƒƒƒ‰–¼‚ÌUŒ‚‚ÍŠO‚ê‚Ä‚µ‚Ü‚Á‚½II").draw(550, 420);
 		}
 	}
 
 }
 
-void Character::PropertySwitch(void) {			//æŒã¡ç‰©ã®ç¨®é¡ï¼ˆåŠ¹æœãªã©ã‚’æ›¸ãï¼‰
-	if (property[now_select]== U"å›å¾©è‰") {
+void Character::PropertySwitch(void) {			//‚¿•¨‚Ìí—ŞiŒø‰Ê‚È‚Ç‚ğ‘‚­j
+	if (property[now_select]== U"‰ñ•œ‘") {
 		
 	}
-	if (property[now_select] == U"å›å¾©è–¬") {
+	if (property[now_select] == U"‰ñ•œ–ò") {
 
 	}
 }
 
 
-void Character::IntervalInitialize(void) {					//ä¸­é–“åˆæœŸåŒ–ï¼ˆä¸»ã«Enemyã®ã‚¿ãƒ¼ãƒ³ã‹ã‚‰Characterã®ã‚¿ãƒ¼ãƒ³ã«ãªã£ãŸã‚‰ä½¿ã†ï¼‰
+void Character::IntervalInitialize(void) {					//’†ŠÔ‰Šú‰»iå‚ÉEnemy‚Ìƒ^[ƒ“‚©‚çCharacter‚Ìƒ^[ƒ“‚É‚È‚Á‚½‚çg‚¤j
 	telopFlag = false;
 	skillFlag = false;
 	propertyFlag = false;
@@ -365,19 +366,19 @@ void Character::IntervalInitialize(void) {					//ä¸­é–“åˆæœŸåŒ–ï¼ˆä¸»ã«Enemyã
 	now_select = 0;
 }
 
-void Character::OnCharacterFlag(bool now) {				//trueã®æ™‚Characterã®ã‚¿ãƒ¼ãƒ³
+void Character::OnCharacterFlag(bool now) {				//true‚ÌCharacter‚Ìƒ^[ƒ“
 	CharacterTurnFlag = now;
 	turncount += 1;
 }
 
-void Character::Damage(int damage) {					//Enemyã§ä½¿ã†ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ã‚‚ã‚‰ã£ã¦ãã‚‹å‡¦ç†
+void Character::Damage(int damage) {					//Enemy‚Åg‚¤ƒ_ƒ[ƒW‚ğ‚à‚ç‚Á‚Ä‚­‚éˆ—
 	if (DefendFlag == true) {
 		CharacterHp -= damage / 2;
 	}
 	else {
 		CharacterHp -= damage;
 	}
-	if (CharacterHp <= 0) {						//HPãŒã‚¼ãƒ­ã«ãªã‚Œã°ãƒãƒˆãƒ«çµ‚äº†
+	if (CharacterHp <= 0) {						//HP‚ªƒ[ƒ‚É‚È‚ê‚Îƒoƒgƒ‹I—¹
 		Battle::OnFlagFinalized(false);
 	}
 }

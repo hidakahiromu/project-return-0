@@ -205,7 +205,6 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Evoa.cpp" />
     <ClCompile Include="Gaia.cpp" />
-    <ClCompile Include="GameAction.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mnotte.cpp" />
     <ClCompile Include="MovieStory.cpp" />
@@ -288,7 +287,6 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Evoa.h" />
     <ClInclude Include="Gaia.h" />
-    <ClInclude Include="GameAction.h" />
     <ClInclude Include="Mnotte.h" />
     <ClInclude Include="MovieStory.h" />
     <ClInclude Include="PrintFrame.h" />
