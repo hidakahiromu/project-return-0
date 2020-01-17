@@ -2,10 +2,10 @@
 #include"Difficult.h"
 #include"Character.h"
 
-String Difficult::character_name;
+String character_name;
 
 Difficult::Difficult(void) {
-	
+	FontAsset::Register(U"DifF", 30);
 }
 
 Difficult::~Difficult(void) {
@@ -20,8 +20,8 @@ void Difficult::update(void) {
 }
 
 void Difficult::draw(void) {
+	FontAsset(U"DifF")(U"–¼‘O‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢").draw(450,250);
 	SimpleGUI::TextBox(tes1, Vec2(600, 300));
-	
 }
 
 void Difficult::SetCharacterName(String text) {

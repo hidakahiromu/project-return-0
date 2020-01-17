@@ -65,6 +65,7 @@ void MovieStory::draw(void) {
 	if (on2== true) {					//2行目がすべて描画出来たら3行目を描画
 		printSentence3();
 	}
+	Print << U"Ctrlキーでスキップ";
 }
 
 void MovieStory::printSentence1(void) {		//会話の１行目の描画処理
@@ -142,40 +143,40 @@ void MovieStory::LoadCsv(void) {					//次の会話に移行する処理
 void MovieStory::ChangeCSV(void) {
 	switch (nowStoryCSV){
 	case 1:												//エピローグ
-		csv.load(U"resource/story/story_prolgue.csv");
+		csv.load(U"resource/story/story_b0.csv");
 		break;
 	case 2:
-		csv.load(U"resource/story/story_chapter1.csv");
+		csv.load(U"resource/story/story_b1.csv");
 		break;
 	case 3:
-		csv.load(U"resource/story/story_chapter2.csv");
+		csv.load(U"resource/story/story_b2.csv");
 		break;
 	case 4:
-		csv.load(U"resource/story/story_chapter3.csv");
+		csv.load(U"resource/story/story_b3.csv");
 		break;
 	case 5:
-		csv.load(U"resource/story/story_chapter4.csv");
+		csv.load(U"resource/story/story_b4.csv");
 		break;
 	case 6:
-		csv.load(U"resource/story/story_chapter5.csv");
+		csv.load(U"resource/story/story_b5.csv");
 		break;
 	case 7:
-		csv.load(U"resource/story/story_chapter6.csv");
+		csv.load(U"resource/story/story_b6.csv");
 		break;
 	case 8:
-		csv.load(U"resource/story/story_chapter7.csv");
+		csv.load(U"resource/story/story_b7.csv");
 		break;
 	case 9:
-		csv.load(U"resource/story/story_chapter8.csv");
+		csv.load(U"resource/story/story_b8.csv");
 		break;
 	case 10:
-		csv.load(U"resource/story/story_chapter9.csv");
+		csv.load(U"resource/story/story_b9.csv");
 		break;
 	case 11:
-		csv.load(U"resource/story/story_chapter10.csv");
+		//csv.load(U"resource/story/story_chapter10.csv");
 		break;
 	case 12:													//エンディング
-		csv.load(U"resource/story/story_epilog.csv");
+		//csv.load(U"resource/story/story_epilog.csv");
 		break;
 	default:
 		break;

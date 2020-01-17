@@ -224,7 +224,7 @@ void Character::StatusDraw(void) {				//キャラクターのステータスを描画する処理（
 	Rect(600, 380, CharacterHp/HP_Max*HP_Width, 30).draw(Palette::Green);
 	Rect(600, 380, HP_Width, 30).drawFrame(1);
 	FontAsset(U"CharaF")(U"HP").draw(600, 370,Palette::Blue);
-	FontAsset(U"CharaF")(Difficult::GetCharacterName).draw(450, 380);
+	FontAsset(U"CharaF")(Difficult::GetCharacterName()).draw(450, 380);
 }
 
 void Character::SkillDraw(void) {				//skillの描画
@@ -252,7 +252,7 @@ void Character::SkillDraw(void) {				//skillの描画
 
 void Character::DefendDraw(void) {				//防御の描画（ここはあまりすることがなかったので形だけ作った）
 	telopFlag = true;
-	FontAsset(U"CharaF")(U"は身構えた！！").draw(550,380);
+	FontAsset(U"CharaF")(Difficult::GetCharacterName(), U"は身構えた！！").draw(550,380);
 	OnFlagDefend(true);
 }
 
@@ -291,7 +291,7 @@ void Character::SearchDraw(void) {			//TODO::テキストデータか、CSVデータから敵の
 
 void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 	if (skills[now_select] == U"for") {
-		FontAsset(U"CharaF")(U"キャラ名はfor文攻撃を行った！").draw(550, 380);
+		FontAsset(U"CharaF")(Difficult::GetCharacterName(),U"はfor文攻撃を行った！").draw(550, 380);
 		FontAsset(U"CharaF")(U"敵名に三万のダメージ！！").draw(550, 420);
 		Enemy::Damage(50);
 	}
