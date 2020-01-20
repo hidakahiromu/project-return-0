@@ -47,7 +47,7 @@ void Character::update(void) {
 			}
 		}
 		else {
-			if (KeyZ.down()) {				//攻撃、防御、持ち物を選んだ時にここに分岐する
+			if (KeyZ.down() | KeyEnter.down() | KeySpace.down()) {				//攻撃、防御、持ち物を選んだ時にここに分岐する
 				IntervalInitialize();
 				Character::OnCharacterFlag(false);
 				Enemy::OnEnemyFlag(true);
@@ -139,7 +139,7 @@ void Character::MenuDraw(void) {			//攻撃、防御、持ち物、調べるの描画
 }
 
 void Character::SelectMenu(void) {				//攻撃、防御、持ち物、調べるの何を選択したのか
-	if (KeyZ.down()) {
+	if (KeyZ.down() | KeyEnter.down() | KeySpace.down()) {
 		Enter->play();
 		SwitchSelect();
 	}
@@ -159,7 +159,7 @@ void Character::SelectMenu(void) {				//攻撃、防御、持ち物、調べるの何を選択した
 }
 
 void Character::SkillSelect(void) {				//skillの何を選択したのかを貰う処理
-	if (KeyZ.down()) {
+	if (KeyZ.down() | KeyEnter.down() | KeySpace.down()) {
 		Enter->play();
 		telopFlag = true;
 		nowdraw = TELOP_DRAW;
@@ -191,7 +191,7 @@ void Character::SkillSelect(void) {				//skillの何を選択したのかを貰う処理
 }
 
 void Character::PropertySelect(void) {					//持ち物の何をもらってきたのかをもらってくる処理
-	if (KeyZ.down()) {
+	if (KeyZ.down() | KeyEnter.down() | KeySpace.down()) {
 		Enter->play();
 		telopFlag = true;
 		Funcdraw = &Character::PropertySwitch;
@@ -295,7 +295,7 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 	srand((unsigned)time(NULL));
 	if (skills[now_select] == U"print") {
 		FontAsset(U"CharaF")(U"キャラ名はprintf攻撃を行った！").draw(550, 380);
-		attackpoint = (100 * rand() & 21 + 90) / 100;
+		attackpoint = (100 * rand() & 21 + 90) / 100;		//攻撃値に90～110%の乱数
 		FontAsset(U"CharaF")(U"敵名に", attackpoint, U"のダメージ！！").draw(550, 420);
 		Enemy::Damage(attackpoint);
 	}
@@ -322,7 +322,7 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 	if (skills[now_select] == U"do-while") {
 		FontAsset(U"CharaF")(U"キャラ名はdo-while攻撃を行った！").draw(550, 380);
 		int attacktimes = rand() % 5+1;
-		for (int attackcount = 0; attackcount < attacktimes; attackcount++) {
+		for (static int attackcount = 0; attackcount < attacktimes; attackcount++) {
 			attackpoint = (60 * rand() & 21 + 90) / 100;
 			FontAsset(U"CharaF")(U"敵名に", attackpoint, U"のダメージ！！").draw(550, 420);
 			Enemy::Damage(attackpoint);
@@ -330,9 +330,8 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 	}
 	if (skills[now_select] == U"scanf") {
 		FontAsset(U"CharaF")(U"キャラ名はscanf攻撃を行った！").draw(550, 380);
-		attackpoint = (50 * rand() & 21 + 90) / 100;
-		FontAsset(U"CharaF")(U"敵名に", attackpoint, U"のダメージ！！").draw(550, 420);
-		Enemy::Damage(attackpoint);
+		FontAsset(U"CharaF")(U"キャラ名は敵の攻撃に備えている・・・").draw(550, 380);
+		counterflg = true;
 	}
 	if (skills[now_select] == U"switch") {
 		FontAsset(U"CharaF")(U"キャラ名はswitch攻撃を行った！").draw(550, 380);
@@ -350,10 +349,13 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 
 void Character::PropertySwitch(void) {			//持ち物の種類（効果などを書く）
 	if (property[now_select]== U"回復草") {
-		
+		CharacterHp += 100;
 	}
 	if (property[now_select] == U"回復薬") {
-
+		CharacterHp += 200;
+	}
+	if (property[now_select] == U"回復薬G") {
+		CharacterHp += 400;
 	}
 }
 
@@ -373,7 +375,7 @@ void Character::OnCharacterFlag(bool now) {				//trueの時Characterのターン
 
 void Character::Damage(int damage) {					//Enemyで使うダメージをもらってくる処理
 	if (DefendFlag == true) {
-		CharacterHp -= damage / 2;
+		CharacterHp -= damage / 4;
 	}
 	else {
 		CharacterHp -= damage;
