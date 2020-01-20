@@ -82,6 +82,9 @@ void MovieStory::draw(void) {
 	if (nowStoryCSV == 2 && storycount >= 2) {
 		TextureAsset(U"MovieStory_back2").draw();
 	}
+	if (nowStoryCSV == 3 && storycount >= 5) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
 
 	Rect(50, 360, 1180, 300).draw(Palette::Black);
 	DownFramePrint();
@@ -206,7 +209,8 @@ void MovieStory::ChangeCSV(void) {
 		break;
 	case 3:
 		csv.load(U"resource/story/story_b2.csv");
-		TextureAsset::Register(U"MovieStory_back1", U"resource/images/doukutu2.png");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/doukutu1.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/doukutu2.png");
 		TextureAsset::Register(U"エマ", U"resource/images/character/ema.png");
 		TextureAsset::Register(U"エーバット", U"resource/images/character/ebato.png");
 		break;
