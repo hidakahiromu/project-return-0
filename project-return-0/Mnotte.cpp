@@ -2,6 +2,7 @@
 #include "Character.h"
 
 Mnotte::Mnotte(void) {
+	GetEnemyName(U"モノット");
 	HP = 100;
 	Ex1 = U"16進数によって人間の言語を表現できる";
 	Ex2 = U"彼らにっとって人間の感情は複雑すぎる";
