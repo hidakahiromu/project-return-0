@@ -85,6 +85,24 @@ void MovieStory::draw(void) {
 	if (nowStoryCSV == 3 && storycount >= 5) {
 		TextureAsset(U"MovieStory_back2").draw();
 	}
+	if (nowStoryCSV == 4 && storycount >= 2) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
+	if (nowStoryCSV == 5 && storycount >= 2) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
+	if (nowStoryCSV == 6 && storycount >= 3) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
+	if (nowStoryCSV == 7 && storycount >= 2) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
+	if (nowStoryCSV == 8 && storycount >= 2) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
+	if (nowStoryCSV == 10 && storycount >= 2) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
 
 	Rect(50, 360, 1180, 300).draw(Palette::Black);
 	DownFramePrint();
@@ -216,31 +234,36 @@ void MovieStory::ChangeCSV(void) {
 		break;
 	case 4:
 		csv.load(U"resource/story/story_b3.csv");
-		TextureAsset::Register(U"MovieStory_back1", U"resource/images/hana_yoru.png");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/doukutu2.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/hana_yoru.png");
 		TextureAsset::Register(U"エマ", U"resource/images/character/ema.png");
 		TextureAsset::Register(U"トーテム", U"resource/images/character/totemu.png");
 		break;
 	case 5:
 		csv.load(U"resource/story/story_b4.csv");
 		TextureAsset::Register(U"MovieStory_back1", U"resource/images/hana_yoru.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/hana_yoru.png");
 		TextureAsset::Register(U"エマ", U"resource/images/character/ema.png");
 		TextureAsset::Register(U"ラムール", U"resource/images/character/ramuru.png");
 		break;
 	case 6:
 		csv.load(U"resource/story/story_b5.csv");
-		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen1_yorujpg.png");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/hana_yoru.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/sougen1_yorujpg.png");
 		TextureAsset::Register(U"エマ", U"resource/images/character/ema.png");
 		TextureAsset::Register(U"ワーフ", U"resource/images/character/wahu.png");
 		break;
 	case 7:
 		csv.load(U"resource/story/story_b6.csv");
-		TextureAsset::Register(U"MovieStory_back1", U"resource/images/taizyu_yoru.png");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen1_yorujpg.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/taizyu_yoru.png");
 		TextureAsset::Register(U"エマ", U"resource/images/character/ema.png");
 		TextureAsset::Register(U"ガイア", U"resource/images/character/gaia.png");
 		break;
 	case 8:
 		csv.load(U"resource/story/story_b7.csv");
-		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen2_yoru.png");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/taizyu_yoru.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/sougen2_yoru.png");
 		TextureAsset::Register(U"EVOA", U"resource/images/character/EVOA.png");
 		TextureAsset::Register(U"エマ", U"resource/images/character/ema.png");
 		break;
@@ -254,7 +277,8 @@ void MovieStory::ChangeCSV(void) {
 		break;
 	case 10:
 		csv.load(U"resource/story/story_b9.csv");
-		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen_yuugata.png");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen2_asa.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/sougen_yuugata.png");
 		TextureAsset::Register(U"主人公", U"resource/images/character/syuzinkou.png");
 		break;
 	default:
