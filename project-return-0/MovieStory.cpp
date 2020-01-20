@@ -79,6 +79,9 @@ void MovieStory::draw(void) {
 	if (nowStoryCSV == 9 && storycount >= 14) {
 		TextureAsset(U"MovieStory_back2").draw();
 	}
+	if (nowStoryCSV == 2 && storycount >= 2) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
 
 	Rect(50, 360, 1180, 300).draw(Palette::Black);
 	DownFramePrint();
@@ -194,7 +197,8 @@ void MovieStory::ChangeCSV(void) {
 		break;
 	case 2:
 		csv.load(U"resource/story/story_b1.csv");
-		TextureAsset::Register(U"MovieStory_back1", U"resource/images/doukutu1.png");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen2_yoru.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/doukutu1.png");
 		TextureAsset::Register(U"EVOA", U"resource/images/character/EVOA.png");
 		TextureAsset::Register(U"ÉGÉ}", U"resource/images/character/ema.png");
 		TextureAsset::Register(U"éÂêlåˆ", U"resource/images/character/syuzinkou.png");
