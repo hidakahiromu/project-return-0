@@ -242,7 +242,7 @@ void MovieStory::ChangeCSV(void) {
 	case 5:
 		csv.load(U"resource/story/story_b4.csv");
 		TextureAsset::Register(U"MovieStory_back1", U"resource/images/hana_yoru.png");
-		TextureAsset::Register(U"MovieStory_back2", U"resource/images/hana_yoru.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/sougen2_yoru.png");
 		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
 		TextureAsset::Register(U"ƒ‰ƒ€[ƒ‹", U"resource/images/character/ramuru.png");
 		break;

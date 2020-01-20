@@ -6,6 +6,7 @@
 Title::Title(void) {
 	startFlag = false;
 	endFlag = false;
+	TextureAsset::Register(U"title", U"resource/images/title1.png");
 	TextureAsset::Register(U"title_back", U"resource/images/title_back2.png");
 	TextureAsset::Register(U"title_start_button1", U"resource/images/title_button.png");
 	TextureAsset::Register(U"title_start_button2", U"resource/images/title_button1.png");
@@ -37,6 +38,7 @@ void Title::update(void){
 
 void Title::draw(void) {
 	TextureAsset(U"title_back").draw();
+	TextureAsset(U"title").draw(300,50);
 	TextureAsset(U"title_start_button1").draw(450, 350);
 	TextureAsset(U"title_end_button1").draw(450, 550);
 	NowSelect();
