@@ -9,7 +9,10 @@ public:
 	void update(void);
 	void draw(void);
 
-	int eneturn = 1;
+	int enedisp = 1;		//enemyのテキスト表示順
+	int attackpoint;		//enemyの攻撃値
+	static bool damagehalf;
+
 
 	static void OnEnemyFlag(bool next);				
 	static void Damage(int damage);				
@@ -27,5 +30,4 @@ private:
 	static int enemyHp;					
 	static String explanation1, explanation2, explanation3;			
 	static bool EnemyTurnFlag;			
-
 };

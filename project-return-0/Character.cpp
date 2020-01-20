@@ -13,6 +13,7 @@ bool Character::CharacterTurnFlag;					//キャラクターのターンかどうかのフラグ
 bool Character::DefendFlag;							//防御のフラグ
 int Character::CharacterHp;							//キャラクターのHP
 int Character::turncount;
+bool Character::counterflg;
 
 Character::Character(void) {
 	Select = new Audio(U"resource/musics/rpg_select.wav");
@@ -376,6 +377,10 @@ void Character::OnCharacterFlag(bool now) {				//trueの時Characterのターン
 void Character::Damage(int damage) {					//Enemyで使うダメージをもらってくる処理
 	if (DefendFlag == true) {
 		CharacterHp -= damage / 4;
+	}
+	if (counterflg == true) {
+		CharacterHp -= damage / 2;
+		Enemy::Damage(damage);
 	}
 	else {
 		CharacterHp -= damage;

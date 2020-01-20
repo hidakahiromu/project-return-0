@@ -38,7 +38,7 @@ Battle::~Battle(void) {
 }
 
 void Battle::update(void) {
-	if (KeyA.down()) {
+	if (KeyA.down()) {		//デバッグ用
 		SceneManager::SetNextScene(SceneManager::SCENE_MOVIE_STORY);
 	}
 	TextureAsset(U"battle_back").draw();

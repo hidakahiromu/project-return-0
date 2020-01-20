@@ -8,6 +8,8 @@ String Enemy::explanation1;			//説明文一行目
 String Enemy::explanation2;			//説明文二行目
 String Enemy::explanation3;			//説明文三行目
 bool Enemy::EnemyTurnFlag;
+bool Enemy::damagehalf;		//Warpのスキルで参照
+
 
 Enemy::Enemy(void) {
 	FontAsset::Register(U"EnemyF", 30);
@@ -20,8 +22,9 @@ Enemy::~Enemy(void) {
 
 void Enemy::update(void) {
 	jobUpdate();
-	if (KeyZ.down() | KeyEnter.down() | KeySpace.down())
-		eneturn = eneturn % 3 + 1;
+
+	if (KeyZ.down() | KeyEnter.down() | KeySpace.down())	//テキスト送り
+		enedisp += 1;
 
 }
 
@@ -32,7 +35,12 @@ void Enemy::draw(void) {
 }
 
 void Enemy::Damage(int damage) {
-	enemyHp -= damage;
+	if (damagehalf == true) {
+		enemyHp -= damage / 2;
+	}
+	else {
+		enemyHp -= damage;
+	}
 	if (enemyHp <= 0) {				//攻撃を食らった時HPが無くなっていればバトル終了
 		Battle::OnFlagFinalized(true);
 	}

@@ -51,7 +51,7 @@ void MovieStory::update(void) {
 			SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
 		}
 	}
-	if (storycount == csv.get<int>(1, 4)&& on3 == true && KeyEnter.down()) {//RPGバトルへ移行
+	if (storycount == csv.get<int>(1, 4)&& on3 == true && (KeyZ.down() | KeyEnter.down() | KeySpace.down())) {//RPGバトルへ移行
 		if (nowStoryCSV == 10) {
 			SceneManager::SetNextScene(SceneManager::SCENE_ENDING);
 		}
@@ -59,10 +59,10 @@ void MovieStory::update(void) {
 			SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
 		}
 	}
-	if (downframecount == 5 && on3 != true && KeyEnter.down()) {		//文字描画中にエンターキーを押すとすべて描画
+	if (downframecount == 5 && on3 != true && (KeyZ.down() | KeyEnter.down() | KeySpace.down())) {		//文字描画中にエンターキーを押すとすべて描画
 		AllSentencePrint();
 	}
-	else if (storycount != csv.get<int>(0, 1) && downframecount == 5 && on3 == true && KeyEnter.down()) {			//すべて描画した後、会話に続きがあるならば初期化
+	else if (storycount != csv.get<int>(0, 1) && downframecount == 5 && on3 == true && (KeyZ.down() | KeyEnter.down() | KeySpace.down())) {			//すべて描画した後、会話に続きがあるならば初期化
 		SetOnFlagFalse();
 		LoadCsv();
 		ClearPrint();

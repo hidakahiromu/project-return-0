@@ -38,7 +38,7 @@ public:
 	void PropertySwitch(void);					//道具（持ち物）の効果分岐
 
 	static int turncount;						//現在のターン数
-	bool counterflg;							//skill"scanf"で参照
+	static bool counterflg;							//skill"scanf"で参照
 
 private:
 	Audio *Select, *Enter, *Back;

@@ -31,7 +31,7 @@ void Title::update(void){
 	if (startFlag == true && (KeyZ.down() | KeyEnter.down() | KeySpace.down())) {
 		SceneManager::SetNextScene(SceneManager::SCENE_DIFFICULT);
 	}
-	if (endFlag == true && KeyEnter.down() | KeyEnter.down() | KeySpace.down()) {
+	if (endFlag == true && KeyZ.down() | KeyEnter.down() | KeySpace.down()) {
 		System::Exit();
 	}
 }
