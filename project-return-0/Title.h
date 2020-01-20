@@ -12,7 +12,8 @@ class Title : public Scene {			//タイトルのクラス（Sceneクラスを継承）
 	private:
 		Audio* title_BGM;
 		bool startFlag, endFlag;		//スタートか終了のどちらを選択しているのかを管理するフラグ
-		void NowSelect(void);			//スタートか終了のどちらを選択しているのかを三角形を描画して表示
+
+		void NowSelect(void);			//スタートか終了のどちらを選択しているのか表示
 		void NowFlag(void);				//スタートか終了のどちらのフラグがたっているのか管理する関数
 
 };

@@ -15,7 +15,7 @@ public:
 	static void GetEnemyName(String name);		//今の敵の名前を取ってくる処理
 	static String SetEnemyName(void);			//敵の名前を渡す処理
 
-protected:				//継承用の関数とか
+protected:				//継承用の関数とか]
 	virtual void jobDraw() = 0;					//EnemyJobsで定義する用のDraw
 	virtual void jobUpdate() = 0;				//EnemyJobsで定義する用のUpdate
 
