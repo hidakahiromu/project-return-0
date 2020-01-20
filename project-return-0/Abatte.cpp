@@ -1,6 +1,7 @@
 #include"Abatte.h"
 
 Abatte::Abatte(void) {
+	GetEnemyName(U"エーバット");
 	HP = 100;
 	Ex1 = U"アドレスをスキャンして行き先を特定している";
 	Ex2 = U"たくさんのアームを隠し持っているロボット";
