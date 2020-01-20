@@ -7,7 +7,7 @@ class Enemy;
 
 class Battle : public Scene {		//RPGバトルのクラス（Sceneクラスを継承）
 public:
-	Battle();				//初期化処理
+	Battle(Character* CHARACTER );				//初期化処理
 	~Battle(void);				//開放処理
 	void update(void);			//計算系処理(Sceneのupdateをオーバーライド)
 	void draw(void);			//描画系処理(Sceneのdrawをオーバーライド)
