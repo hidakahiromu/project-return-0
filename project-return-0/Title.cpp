@@ -1,7 +1,7 @@
 #include"SceneManager.h"
 #include"Title.h"
 
-//ToDo::‚r‚d‚Æ‰æ‘œ“\‚è•t‚¯‚é‚¾‚¯
+//ToDo::ï¼³ï¼¥ã¨ç”»åƒè²¼ã‚Šä»˜ã‘ã‚‹ã ã‘
 
 Title::Title(void) {
 	startFlag = false;
@@ -30,11 +30,7 @@ void Title::update(void){
 	if (startFlag == true && (KeyZ.down() | KeyEnter.down() | KeySpace.down())) {
 		SceneManager::SetNextScene(SceneManager::SCENE_DIFFICULT);
 	}
-<<<<<<< HEAD
-	if (endFlag == true && (KeyZ.down() | KeyEnter.down() | KeySpace.down())) {
-=======
 	if (endFlag == true && KeyEnter.down()) {
->>>>>>> parent of 2edd839... Revert "Merge pull request #3 from hidakahiromu/add/hida"
 		System::Exit();
 	}
 }
