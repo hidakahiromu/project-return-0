@@ -39,6 +39,8 @@ void Battle::update(void) {
 
 	Cha->update();
 	Ene->update();
+
+
 	if(WinFlagCharacter == true || WinFlagEnemy == true) {			//どちらかの体力がなくなり、フラグがたったらエンディングへ移行
 		//SceneManager::SetNextScene(SceneManager::SCENE_ENDING);
 	}

@@ -37,7 +37,8 @@ public:
 	void SkillsSwitch(void);					//攻撃の種類（スキル）分岐
 	void PropertySwitch(void);					//道具（持ち物）の効果分岐
 
-	static int turncount;				//現在のターン数
+	static int turncount;						//現在のターン数
+	bool counterflg;							//skill"scanf"で参照
 
 private:
 	Audio *Select, *Enter, *Back;

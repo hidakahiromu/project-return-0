@@ -19,10 +19,15 @@ Enemy::~Enemy(void) {
 
 void Enemy::update(void) {
 	jobUpdate();
+	if (KeyZ.down() | KeyEnter.down() | KeySpace.down())
+		eneturn = eneturn % 3 + 1;
+
 }
 
 void Enemy::draw(void) {
-	jobDraw();
+	if (EnemyTurnFlag == true)
+		jobDraw();
+
 }
 
 void Enemy::Damage(int damage) {

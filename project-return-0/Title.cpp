@@ -17,11 +17,11 @@ Title::~Title(void) {
 
 void Title::update(void){
 	NowFlag();
-	if (startFlag == true && KeyEnter.down()) {
+	if (startFlag == true && (KeyZ.down() | KeyEnter.down() | KeySpace.down())) {
 		SceneManager::SetNextScene(SceneManager::SCENE_DIFFICULT);
 	}
-	if (endFlag == true && KeyEnter.down()) {
-		//ToDo::Ç±Ç±Ç…èIóπèàóùÇï`Ç≠
+	if (endFlag == true && (KeyZ.down() | KeyEnter.down() | KeySpace.down())) {
+		System::Exit();
 	}
 }
 
