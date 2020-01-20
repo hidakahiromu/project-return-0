@@ -11,21 +11,21 @@ public:
 
 	int eneturn = 1;
 
-	static void OnEnemyFlag(bool next);			//Enemy�̃t���O�؂�ւ�	
-	static void Damage(int damage);				//Character����_���[�W�����Ă��鏈��
-	static void SetEnemyStatus(int HP,String Explain1, String Explain2, String Explain3);	//�e�W���u����HP�Ɛ��������Ă��鏈��
-	static void PrintExplanation(void);			//�L�����N�^�[�Ŏg���G�̏���\������@�\
-	static void GetEnemyName(String name);		//���̓G�̖��O����Ă��鏈��
-	static String SetEnemyName(void);			//�G�̖��O��n������
+	static void OnEnemyFlag(bool next);				
+	static void Damage(int damage);				
+	static void SetEnemyStatus(int HP,String Explain1, String Explain2, String Explain3);	
+	static void PrintExplanation(void);			
+	static void GetEnemyName(String name);		
+	static String SetEnemyName(void);			
 
 
-	virtual void jobDraw() = 0;					//EnemyJobs�Œ�`����p��Draw
-	virtual void jobUpdate() = 0;				//EnemyJobs�Œ�`����p��Update
+	virtual void jobDraw() = 0;					
+	virtual void jobUpdate() = 0;				
 
 private:
 	static String enemyName;
-	static int enemyHp;					//�G��HP
-	static String explanation1, explanation2, explanation3;			//��������s�ځA��s�ځA�O�s��
-	static bool EnemyTurnFlag;			//TRUE�̎�Enemy�̃^�[��
+	static int enemyHp;					
+	static String explanation1, explanation2, explanation3;			
+	static bool EnemyTurnFlag;			
 
 };
