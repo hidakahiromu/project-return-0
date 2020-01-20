@@ -1,5 +1,6 @@
 #include"SceneManager.h"
 #include"MovieStory.h"
+#include"Difficult.h"
 
 //TODO::‚ ‚Æ‚Í‰æ‘œ‚Æ–¼‘O‚ğæ‚Á‚¯‚é‚¾‚¯
 
@@ -12,7 +13,7 @@ int MovieStory::nowStoryCSV=0;
 MovieStory::MovieStory(void) {
 	SetFrameCount();
 	SetOnFlagFalse();
-	startX = 300, startY = 370;
+	startX = 300, startY = 420;
 	sentence = 0;
 	line = 2;
 	storycount = 1;
@@ -22,12 +23,17 @@ MovieStory::MovieStory(void) {
 
 	talk = new Audio(U"resource/musics/story_talk.wav");
 
+	nowname = csv.get<String>(line,1);
+	if (nowname == U"ålŒö") {
+		nowname = Difficult::GetCharacterName();
+	}
 	nowstory[sentence] = csv.get<String>(line,0);
 	nowstory[sentence+1] = csv.get<String>(line + 1, 0);
 	nowstory[sentence+2] = csv.get<String>(line + 2, 0);
 }
 
 MovieStory::~MovieStory(void) {
+	TextureAsset::UnregisterAll();
 	delete talk;
 	SetOnFlagFalse();
 	storycount = 0;
@@ -38,10 +44,20 @@ MovieStory::~MovieStory(void) {
 
 void MovieStory::update(void) {
 	if (KeyControl.down()) {
-		SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
+		if (nowStoryCSV == 10) {
+			SceneManager::SetNextScene(SceneManager::SCENE_ENDING);
+		}
+		else {
+			SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
+		}
 	}
 	if (storycount == csv.get<int>(1, 4)&& on3 == true && KeyEnter.down()) {//RPGƒoƒgƒ‹‚ÖˆÚs
-		SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
+		if (nowStoryCSV == 10) {
+			SceneManager::SetNextScene(SceneManager::SCENE_ENDING);
+		}
+		else {
+			SceneManager::SetNextScene(SceneManager::SCENE_BATTLE);
+		}
 	}
 	if (downframecount == 5 && on3 != true && KeyEnter.down()) {		//•¶š•`‰æ’†‚ÉƒGƒ“ƒ^[ƒL[‚ğ‰Ÿ‚·‚Æ‚·‚×‚Ä•`‰æ
 		AllSentencePrint();
@@ -55,7 +71,28 @@ void MovieStory::update(void) {
 }
 
 void MovieStory::draw(void) {
+	TextureAsset(U"MovieStory_back1").draw();
+
+	if (nowStoryCSV == 1 && storycount >= 17) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
+	if (nowStoryCSV == 9 && storycount >= 14) {
+		TextureAsset(U"MovieStory_back2").draw();
+	}
+
+	Rect(50, 360, 1180, 300).draw(Palette::Black);
 	DownFramePrint();
+	FontAsset(U"fontB")(U"w",nowname,U"x").draw(300,370);
+	if (nowname	!= U"ƒiƒŒ[ƒVƒ‡ƒ“" && nowname != U"‚”‚–" && nowname != U"HHH" && nowname != U"‹@ŠB‰¹" && nowname != U"ƒpƒ\ƒRƒ“" && nowname != U"“]‘—‹@ŠB") {
+		if (csv.get<String>(line, 1) == U"ålŒö" ) {
+			TextureAsset(U"ålŒö").draw(60, 390);
+		}
+		else {
+			TextureAsset(nowname).draw(60, 390);
+		}
+	}
+	
+
 	if (downframecount == 5) {			//”’˜g‚ªo‚Ä‚«‚½‚ç1s–Ú‚ğ•`‰æ
 		printSentence1();
 	}
@@ -135,48 +172,82 @@ void MovieStory::AllSentencePrint(void) {			//ƒtƒ‰ƒO‚ğTRUE‚ÉAƒJƒEƒ“ƒg‚ğMAX‚É‚·‚
 void MovieStory::LoadCsv(void) {					//Ÿ‚Ì‰ï˜b‚ÉˆÚs‚·‚éˆ—
 	line += 3;
 	storycount++;
+	nowname = csv.get<String>(line, 1);
+	if (nowname == U"ålŒö") {
+		nowname = Difficult::GetCharacterName();
+	}
 	nowstory[sentence] = csv.get<String>(line, 0);
 	nowstory[sentence + 1] = csv.get<String>(line + 1, 0);
 	nowstory[sentence + 2] = csv.get<String>(line + 2, 0);
+
 }
 
 void MovieStory::ChangeCSV(void) {
 	switch (nowStoryCSV){
 	case 1:												//ƒGƒsƒ[ƒO
 		csv.load(U"resource/story/story_b0.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen2_asa.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/sougen2_yoru.png");
+		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
+		TextureAsset::Register(U"ålŒö", U"resource/images/character/syuzinkou.png");
+		TextureAsset::Register(U"EVOA", U"resource/images/character/EVOA.png");
 		break;
 	case 2:
 		csv.load(U"resource/story/story_b1.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/doukutu1.png");
+		TextureAsset::Register(U"EVOA", U"resource/images/character/EVOA.png");
+		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
+		TextureAsset::Register(U"ålŒö", U"resource/images/character/syuzinkou.png");
+		TextureAsset::Register(U"ƒ‚ƒmƒbƒg", U"resource/images/character/monoto.png");
 		break;
 	case 3:
 		csv.load(U"resource/story/story_b2.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/doukutu2.png");
+		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
+		TextureAsset::Register(U"ƒG[ƒoƒbƒg", U"resource/images/character/ebato.png");
 		break;
 	case 4:
 		csv.load(U"resource/story/story_b3.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/hana_yoru.png");
+		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
+		TextureAsset::Register(U"ƒg[ƒeƒ€", U"resource/images/character/totemu.png");
 		break;
 	case 5:
 		csv.load(U"resource/story/story_b4.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/hana_yoru.png");
+		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
+		TextureAsset::Register(U"ƒ‰ƒ€[ƒ‹", U"resource/images/character/ramuru.png");
 		break;
 	case 6:
 		csv.load(U"resource/story/story_b5.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen1_yorujpg.png");
+		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
+		TextureAsset::Register(U"ƒ[ƒt", U"resource/images/character/wahu.png");
 		break;
 	case 7:
 		csv.load(U"resource/story/story_b6.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/taizyu_yoru.png");
+		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
+		TextureAsset::Register(U"ƒKƒCƒA", U"resource/images/character/gaia.png");
 		break;
 	case 8:
 		csv.load(U"resource/story/story_b7.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen2_yoru.png");
+		TextureAsset::Register(U"EVOA", U"resource/images/character/EVOA.png");
+		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
 		break;
 	case 9:
 		csv.load(U"resource/story/story_b8.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen2_yoru.png");
+		TextureAsset::Register(U"MovieStory_back2", U"resource/images/sougen2_asa.png");
+		TextureAsset::Register(U"EVOA", U"resource/images/character/EVOA.png");
+		TextureAsset::Register(U"ƒGƒ}", U"resource/images/character/ema.png");
+		TextureAsset::Register(U"ålŒö", U"resource/images/character/syuzinkou.png");
 		break;
 	case 10:
 		csv.load(U"resource/story/story_b9.csv");
-		break;
-	case 11:
-		//csv.load(U"resource/story/story_chapter10.csv");
-		break;
-	case 12:													//ƒGƒ“ƒfƒBƒ“ƒO
-		//csv.load(U"resource/story/story_epilog.csv");
+		TextureAsset::Register(U"MovieStory_back1", U"resource/images/sougen_yuugata.png");
+		TextureAsset::Register(U"ålŒö", U"resource/images/character/syuzinkou.png");
 		break;
 	default:
 		break;

@@ -1,6 +1,7 @@
 #include"Totem.h"
 
 Totem::Totem(void) {
+	GetEnemyName(U"トーテム");
 	HP = 100;
 	Ex1 = U"1トーテムポールのように３つのロボット";
 	Ex2 = U"が重なってできている";
