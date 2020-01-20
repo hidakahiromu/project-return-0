@@ -9,17 +9,15 @@ public:
 	void update(void);
 	void draw(void);
 
-	static void OnEnemyFlag(bool next);			//Enemy�̃t���O�؂�ւ�	
-	static void Damage(int damage);				//Character����_���[�W��������Ă��鏈��
-	static void SetEnemyStatus(int HP,String Explain1, String Explain2, String Explain3);	//�e�W���u����HP�Ɛ�������������Ă��鏈��
-	static void PrintExplanation(void);			//�L�����N�^�[�Ŏg���G�̏���\������@�\
-	static void GetEnemyName(String name);		//���̓G�̖��O������Ă��鏈��
-	static String SetEnemyName(void);			//�G�̖��O��n������
-
-
 	int eneturn = 1;
 
-protected:				//�p���p�̊֐��Ƃ�
+	static void OnEnemyFlag(bool next);			//Enemy�̃t���O�؂�ւ�	
+	static void Damage(int damage);				//Character����_���[�W�����Ă��鏈��
+	static void SetEnemyStatus(int HP,String Explain1, String Explain2, String Explain3);	//�e�W���u����HP�Ɛ��������Ă��鏈��
+	static void PrintExplanation(void);			//�L�����N�^�[�Ŏg���G�̏���\������@�\
+	static void GetEnemyName(String name);		//���̓G�̖��O����Ă��鏈��
+	static String SetEnemyName(void);			//�G�̖��O��n������
+
 
 	virtual void jobDraw() = 0;					//EnemyJobs�Œ�`����p��Draw
 	virtual void jobUpdate() = 0;				//EnemyJobs�Œ�`����p��Update
