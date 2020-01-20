@@ -12,12 +12,15 @@ public:
 	static void Damage(int damage);				//Characterからダメージをもらってくる処理
 	static void SetEnemyStatus(int HP,String Explain1, String Explain2, String Explain3);	//各ジョブからHPと説明文をもらってくる処理
 	static void PrintExplanation(void);			//キャラクターで使う敵の情報を表示する機能
+	static void GetEnemyName(String name);		//今の敵の名前を取ってくる処理
+	static String SetEnemyName(void);			//敵の名前を渡す処理
 
-protected:				//継承用の関数とか
+protected:				//継承用の関数とか]
 	virtual void jobDraw() = 0;					//EnemyJobsで定義する用のDraw
 	virtual void jobUpdate() = 0;				//EnemyJobsで定義する用のUpdate
 
 private:
+	static String enemyName;
 	static int enemyHp;					//敵のHP
 	static String explanation1, explanation2, explanation3;			//説明文一行目、二行目、三行目
 	static bool EnemyTurnFlag;			//TRUEの時Enemyのターン

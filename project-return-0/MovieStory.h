@@ -24,6 +24,7 @@ private:
 	CSVData csv;				//csv読み込む用
 	int storycount;				//今何章なのか
 	String nowstory[3];		//csvのデータを2次元配列のStringで表示(3文26文字)
+	String nowname;			//今誰が話しているのかをCSVからもらうための変数
 	int sentence;				//文管理用変数
 	
 	void SetOnFlagFalse(void);				//on1,on2,on3のフラグを全部falseに変える

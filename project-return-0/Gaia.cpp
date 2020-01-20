@@ -1,6 +1,7 @@
 #include"Gaia.h"
 
 Gaia::Gaia(void) {
+	GetEnemyName(U"ガイア");
 	HP = 100;
 	Ex1 = U"壊れたロボットの集合体で";
 	Ex2 = U"自我を持ち始めているが";
