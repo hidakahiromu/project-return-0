@@ -3,7 +3,6 @@
 #include"Enemy.h"
 
 int Enemy::enemyHp;					//敵のHP
-String Enemy::enemyName;			//敵の名前
 String Enemy::explanation1;			//説明文一行目
 String Enemy::explanation2;			//説明文二行目
 String Enemy::explanation3;			//説明文三行目
@@ -20,10 +19,15 @@ Enemy::~Enemy(void) {
 
 void Enemy::update(void) {
 	jobUpdate();
+	if (KeyZ.down() | KeyEnter.down() | KeySpace.down())
+		eneturn = eneturn % 3 + 1;
+
 }
 
 void Enemy::draw(void) {
-	jobDraw();
+	if (EnemyTurnFlag == true)
+		jobDraw();
+
 }
 
 void Enemy::Damage(int damage) {
@@ -48,12 +52,4 @@ void Enemy::PrintExplanation(void) {
 	FontAsset(U"EnemyF")(explanation1).draw(550, 380);
 	FontAsset(U"EnemyF")(explanation2).draw(550, 420);
 	FontAsset(U"EnemyF")(explanation3).draw(550, 460);
-}
-
-void Enemy::GetEnemyName(String name) {
-	enemyName = name;
-}
-
-String Enemy::SetEnemyName(void) {
-	return enemyName;
 }

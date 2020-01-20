@@ -1,5 +1,6 @@
 #include"SceneManager.h"
 
+Character* SceneManager::character;
 Scene* SceneManager::scene;
 SceneManager::SCENE SceneManager::nowscene;
 SceneManager::SCENE SceneManager::nextscene;
@@ -36,6 +37,7 @@ void SceneManager::ChangeScene() {
 
 	case SCENE_DIFFICULT:
 		delete scene;
+		character = new Character();
 		scene = new Difficult();
 		break;
 
@@ -46,7 +48,7 @@ void SceneManager::ChangeScene() {
 
 	case SCENE_BATTLE:
 		delete scene;
-		scene = new Battle();
+		scene = new Battle(character);
 		break;
 
 	case SCENE_ENDING:
