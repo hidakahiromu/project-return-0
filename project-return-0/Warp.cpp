@@ -1,7 +1,6 @@
 #include"Warp.h"
 
 Warp::Warp(void) {
-	GetEnemyName(U"ワーフ");
 	HP = 100;
 	Ex1 = U"強固なシールドを持っており";
 	Ex2 = U"いろいろな攻撃からインターネットを";

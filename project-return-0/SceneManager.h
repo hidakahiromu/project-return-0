@@ -29,6 +29,8 @@ class SceneManager {				//シ－ン管理用クラス
 		static void SetNextScene(SCENE next);
 
 	private:
+
+		static Character* character;
 		static Scene *scene;
 		static SCENE nowscene;			//今のシーンはどこか
 		static SCENE nextscene;			//次は度のシーンに飛びたいか
