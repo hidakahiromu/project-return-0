@@ -1,7 +1,6 @@
 #include"Evoa.h"
 
 Evoa::Evoa(void) {
-	GetEnemyName(U"EVOA");
 	HP = 100;
 	Ex1 = U"AI‚ª©‰ä‚ğ‚¿©•ª‚Ì‘¶İˆÓ‹`‚ğ";
 	Ex2 = U"’T‚µ‚Ä‚¢‚é";

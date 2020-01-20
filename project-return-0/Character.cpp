@@ -226,7 +226,7 @@ void Character::StatusDraw(void) {				//キャラクターのステータスを描画する処理（
 	Rect(600, 380, CharacterHp/HP_Max*HP_Width, 30).draw(Palette::Green);
 	Rect(600, 380, HP_Width, 30).drawFrame(1);
 	FontAsset(U"CharaF")(U"HP").draw(600, 370,Palette::Blue);
-	FontAsset(U"CharaF")(Difficult::GetCharacterName()).drawAt(450, 400);
+	FontAsset(U"CharaF")(Difficult::GetCharacterName()).draw(450, 380);
 }
 
 void Character::SkillDraw(void) {				//skillの描画
