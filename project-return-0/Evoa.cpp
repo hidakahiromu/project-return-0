@@ -44,7 +44,7 @@ void Evoa::jobDetails(void) {
 		break;
 	case 2:
 		if (jobDetailsFlag == false) {
-			attackpoint = (50 * rand() & 21 + 90) / 100;
+			attackpoint = (50 * (rand() % 21 + 90)) / 100;
 		}
 		jobDetailsFlag = true;
 		FontAsset(U"EnemyF")(Difficult::GetCharacterName(),U"に", attackpoint, U"のダメージ！").draw(550, 380);

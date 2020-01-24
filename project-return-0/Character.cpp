@@ -284,6 +284,8 @@ void Character::PropertyDraw(void) {				//キャラクターの持ち物を描画
 }
 
 void Character::SearchDraw(void) {			//TODO::テキストデータか、CSVデータから敵の情報を取ってくる
+	select_Point_X = -20;
+	now_select = 5;
 	Enemy::PrintExplanation();
 	if (KeyX.down()) {			//ステータス描画に戻る時効果音とnowselectを0に戻す（ここはいるのか？）
 		Back->play();
@@ -298,7 +300,7 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 	if (skills[now_select] == U"print") {
 		FontAsset(U"CharaF")(Difficult::GetCharacterName(),U"はprintf攻撃を行った！").draw(550, 380);
 		if (DetailsFlag == false) {
-			attackpoint = (100 * rand() & 21 + 90) / 100;		//攻撃値に90～110%の乱数
+			attackpoint = (100 * (rand() % 21 + 90)) / 100;		//攻撃値に90～110%の乱数
 			Enemy::Damage(attackpoint);
 		}
 		FontAsset(U"CharaF")(Enemy::SetEnemyName(),U"に", attackpoint, U"のダメージ！！").draw(550, 420);
@@ -306,7 +308,7 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 	if (skills[now_select] == U"if") {
 		FontAsset(U"CharaF")(Difficult::GetCharacterName(),U"はif攻撃を行った！").draw(550, 380);
 		if (DetailsFlag == false) {
-			attackpoint = (50 * turncount * rand() & 21 + 90) / 100;
+			attackpoint = (50 * turncount * (rand() % 21 + 90)) / 100;
 			Enemy::Damage(attackpoint);
 		}
 		FontAsset(U"CharaF")(Enemy::SetEnemyName(),U"に", attackpoint, U"のダメージ！！").draw(550, 420);
@@ -319,7 +321,7 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 		if (attacktimes > 0) {
 			for (int attackcount = 0; attackcount < attacktimes; attackcount++) {
 				if (DetailsFlag == false) {
-					attackpoint = (100 * rand() & 21 + 90) / 100;
+					attackpoint = (100 * attacktimes * (rand() % 21 + 90)) / 100;
 					Enemy::Damage(attackpoint);
 				}
 				FontAsset(U"CharaF")(Enemy::SetEnemyName(),U"に", attackpoint, U"のダメージ！！").draw(550, 420);
@@ -336,7 +338,7 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 		}
 		for (int attackcount = 0; attackcount < attacktimes; attackcount++) {
 			if (DetailsFlag == false) {
-				attackpoint = (60 * rand() & 21 + 90) / 100;
+				attackpoint = (60 * (rand() % 21 + 90)) / 100;
 				Enemy::Damage(attackpoint);
 			}
 			FontAsset(U"CharaF")(Enemy::SetEnemyName(),U"に", attackpoint, U"のダメージ！！").draw(550, 420);
@@ -351,7 +353,7 @@ void Character::SkillsSwitch(void) {			//攻撃の種類（書く）
 		FontAsset(U"CharaF")(Difficult::GetCharacterName(),U"はswitch攻撃を行った！").draw(550, 380);
 		if (7 > rand() % 10) {
 			if (DetailsFlag == false) {
-				attackpoint = (300 * rand() & 21 + 90) / 100;
+				attackpoint = (300 * (rand() % 21 + 90)) / 100;
 				Enemy::Damage(attackpoint);
 			}
 			FontAsset(U"CharaF")(Enemy::SetEnemyName(),U"に", attackpoint, U"のダメージ！！").draw(550, 420);

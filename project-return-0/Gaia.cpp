@@ -34,7 +34,7 @@ void Gaia::jobDetails(void) {
 		break;
 	case 2:
 		if (jobDetailsFlag == false) {
-			attackpoint = (100 * rand() & 21 + 90) / 100;
+			attackpoint = (100 * (rand() % 21 + 90)) / 100;
 		}
 		jobDetailsFlag = true;
 		FontAsset(U"EnemyF")(Difficult::GetCharacterName(),U"に", attackpoint, U"のダメージ！").draw(550, 380);

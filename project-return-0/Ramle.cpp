@@ -40,13 +40,13 @@ void Ramle::jobDetails(void) {
 	case 2:
 		if (HP <= 100) {
 			if (jobDetailsFlag == false) {
-				attackpoint = (200 * rand() & 21 + 90) / 100;
+				attackpoint = (200 * (rand() % 21 + 90)) / 100;
 			}
 			FontAsset(U"EnemyF")(Difficult::GetCharacterName(),U"に", attackpoint, U"のダメージ！").draw(550, 380);
 		}
 		else {
 			if (jobDetailsFlag == false) {
-				attackpoint = (80 * rand() & 21 + 90) / 100;
+				attackpoint = (80 * (rand() % 21 + 90)) / 100;
 			}
 			FontAsset(U"EnemyF")(Difficult::GetCharacterName(),U"に", attackpoint, U"のダメージ！").draw(550, 380);
 		}
