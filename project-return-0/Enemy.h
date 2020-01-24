@@ -9,7 +9,6 @@ public:
 	void update(void);
 	void draw(void);
 
-	int enedisp = 1;		//enemyのテキスト表示順
 	int attackpoint;		//enemyの攻撃値
 	static bool damagehalf;
 
@@ -21,7 +20,10 @@ public:
 	static void GetEnemyName(String name);		
 	static String SetEnemyName(void);			
 
-
+protected:
+	bool jobDetailsFlag;
+	int enedisp;		//enemyのテキスト表示順
+	virtual void jobDetails() = 0;			//ジョブごとの攻撃の詳細が書いてある関数
 	virtual void jobDraw() = 0;					
 	virtual void jobUpdate() = 0;				
 

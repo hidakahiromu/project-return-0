@@ -47,6 +47,9 @@ private:
 	bool skillFlag;						//攻撃を選択したときTRUE
 	bool propertyFlag;					//持ち物を選択したときTRUE
 	bool telopFlag;						//テロップを描画するときに操作できなくするようにするためのフラグ
+	bool DetailsFlag;					//スキルや持ち物を使用したときに何回も計算しないようにするためのフラグ
+
+	int attacktimes;
 
 	DRAW nowdraw;
 	double HP,HP_Width,HP_Max;					//（左から）キャラクターのHPとゲージの幅と今のHPのフル

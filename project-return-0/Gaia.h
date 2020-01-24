@@ -12,6 +12,7 @@ private:
 	int HP;						//jobÇ≤Ç∆ÇÃHP
 	String Ex1, Ex2, Ex3;		//ê‡ñæï∂1,2,3
 
+	void jobDetails() final;
 	void jobDraw(void) final;
 	void jobUpdate(void) final;
 };

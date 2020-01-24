@@ -1,7 +1,10 @@
 #include"Ramle.h"
 #include "Character.h"
+#include"Difficult.h"
 
 Ramle::Ramle(void) {
+	jobDetailsFlag = false;
+	enedisp = 0;
 	GetEnemyName(U"ラムール");	//battle5
 	HP = 400;
 	Ex1 = U"EVOAによって作られたロボット";
@@ -15,11 +18,17 @@ Ramle::~Ramle(void) {
 }
 
 void Ramle::jobUpdate(void) {
-
+	if (KeyZ.down() | KeyEnter.down() | KeySpace.down()) {	//テキスト送り
+		enedisp += 1;
+	}
 }
 
 void Ramle::jobDraw(void) {
-	switch (Enemy::enedisp) {
+	jobDetails();
+}
+
+void Ramle::jobDetails(void) {
+	switch (enedisp) {
 	case 1:
 		if (HP <= 100) {
 			FontAsset(U"EnemyF")(U"ラムールは暴走した！").draw(550, 380);
@@ -30,19 +39,25 @@ void Ramle::jobDraw(void) {
 		break;
 	case 2:
 		if (HP <= 100) {
-			attackpoint = (200 * rand() & 21 + 90) / 100;
-			FontAsset(U"EnemyF")(U"キャラ名に", attackpoint, U"のダメージ！").draw(550, 380);
+			if (jobDetailsFlag == false) {
+				attackpoint = (200 * rand() & 21 + 90) / 100;
+			}
+			FontAsset(U"EnemyF")(Difficult::GetCharacterName(),U"に", attackpoint, U"のダメージ！").draw(550, 380);
 		}
 		else {
-			attackpoint = (80 * rand() & 21 + 90) / 100;
-			FontAsset(U"EnemyF")(U"キャラ名に", attackpoint, U"のダメージ！").draw(550, 380);
+			if (jobDetailsFlag == false) {
+				attackpoint = (80 * rand() & 21 + 90) / 100;
+			}
+			FontAsset(U"EnemyF")(Difficult::GetCharacterName(),U"に", attackpoint, U"のダメージ！").draw(550, 380);
 		}
+		jobDetailsFlag = true;
 		Character::Damage(attackpoint);
 		break;
 	case 3:
 		Character::OnCharacterFlag(true);
 		OnEnemyFlag(false);
-		Enemy::enedisp = 1;
+		enedisp = 0;
+		jobDetailsFlag = false;
 		break;
 	default:
 		break;

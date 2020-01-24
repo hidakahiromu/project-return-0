@@ -12,6 +12,7 @@ public:
 	void update(void);			//計算系処理(Sceneのupdateをオーバーライド)
 	void draw(void);			//描画系処理(Sceneのdrawをオーバーライド)
 	static void OnFlagFinalized(bool end);			//trueが呼ばれるとキャラクターの勝利、falseで敵の勝利
+	static int SetEnemyCount(void);					//今の敵は何体目なのかを取ってくる処理
 
 	void ChangeEnemy(int count);			//敵の生成
 

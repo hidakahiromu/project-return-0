@@ -8,12 +8,12 @@ String Enemy::explanation1;			//説明文一行目
 String Enemy::explanation2;			//説明文二行目
 String Enemy::explanation3;			//説明文三行目
 bool Enemy::EnemyTurnFlag;
-bool Enemy::damagehalf;		//Warpのスキルで参照
+bool Enemy::damagehalf;				//Warpのスキルで参照
 
 
 Enemy::Enemy(void) {
 	FontAsset::Register(U"EnemyF", 30);
-
+	enedisp = 0;
 }
 
 Enemy::~Enemy(void) {
@@ -21,17 +21,15 @@ Enemy::~Enemy(void) {
 }
 
 void Enemy::update(void) {
-	jobUpdate();
-
-	if (KeyZ.down() | KeyEnter.down() | KeySpace.down())	//テキスト送り
-		enedisp += 1;
-
+	if (EnemyTurnFlag == true) {
+		jobUpdate();
+	}
 }
 
 void Enemy::draw(void) {
-	if (EnemyTurnFlag == true)
+	if (EnemyTurnFlag == true) {
 		jobDraw();
-
+	}
 }
 
 void Enemy::Damage(int damage) {

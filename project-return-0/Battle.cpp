@@ -57,8 +57,8 @@ void Battle::update(void) {
 	Ene->update();
 
 
-	if(WinFlagCharacter == true || WinFlagEnemy == true) {			//どちらかの体力がなくなり、フラグがたったらエンディングへ移行
-		//SceneManager::SetNextScene(SceneManager::SCENE_ENDING);
+	if(WinFlagCharacter == true || WinFlagEnemy == true) {			//どちらかの体力がなくなり、フラグがたったら次のシーンへ移行
+		SceneManager::SetNextScene(SceneManager::SCENE_ENDING);
 	}
 }
 
@@ -93,6 +93,10 @@ void Battle::OnFlagFinalized(bool end) {			//TRUEならキャラクターの勝ち、FALSEな
 	else {
 		WinFlagEnemy = true;
 	}
+}
+
+int Battle::SetEnemyCount(void) {
+	return NowEnemyCount;
 }
 
 void Battle::ChangeEnemy(int count) {

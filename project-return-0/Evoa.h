@@ -9,8 +9,10 @@ public:
 
 private:
 	int HP;						//jobごとのHP
+	int count;					//テスト用
 	String Ex1, Ex2, Ex3;		//説明文1,2,3
 
+	void jobDetails() final;
 	void jobDraw(void) final;
 	void jobUpdate(void) final;
 };
