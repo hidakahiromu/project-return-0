@@ -32,5 +32,7 @@ private:
 	void (Battle::* FuncDraw)(void);
 	void PrintFrame1(void);	
 	void PrintFrame2(void);
+	void CharacterWinScene(void);
+	void EnemyWinScene(void);
 
 };

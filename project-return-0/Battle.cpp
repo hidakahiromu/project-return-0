@@ -53,18 +53,25 @@ void Battle::update(void) {
 	}
 	PrintFrame1();
 	PrintFrame2();
-	Cha->update();
-	Ene->update();
+	if (WinFlagCharacter != true && WinFlagEnemy != true) {
+		Cha->update();
+		Ene->update();
+	}
 
 
-	if(WinFlagCharacter == true || WinFlagEnemy == true) {			//どちらかの体力がなくなり、フラグがたったら次のシーンへ移行
-		SceneManager::SetNextScene(SceneManager::SCENE_ENDING);
+	if(WinFlagCharacter == true) {			//どちらかの体力がなくなり、フラグがたったら次のシーンへ移行
+		CharacterWinScene();
+	}
+	if (WinFlagEnemy == true) {
+		EnemyWinScene();
 	}
 }
 
 void Battle::draw(void) {
-	Cha->draw();
-	Ene->draw();
+	if (WinFlagCharacter != true && WinFlagEnemy != true) {
+		Cha->draw();
+		Ene->draw();
+	}
 }
 
 
@@ -148,5 +155,20 @@ void Battle::ChangeEnemy(int count) {
 		break;
 	default:
 		break;
+	}
+}
+
+void Battle::CharacterWinScene(void) {
+	FontAsset(U"FB")(Difficult::GetCharacterName(), U"は", Enemy::SetEnemyName(), U"を倒した！！！").draw(550,380);
+	FontAsset::Unregister(Enemy::SetEnemyName());
+	if (KeyEnter.down() || KeyZ.down() || KeyX.down()) {
+		SceneManager::SetNextScene(SceneManager::SCENE_MOVIE_STORY);
+	}
+}
+
+void Battle::EnemyWinScene(void) {
+	FontAsset(U"FB")(Difficult::GetCharacterName(), U"は力尽きてしまった...").draw(550, 380);
+	if (KeyEnter.down() || KeyZ.down() || KeyX.down()) {
+		SceneManager::SetNextScene(SceneManager::SCENE_MOVIE_STORY);
 	}
 }
